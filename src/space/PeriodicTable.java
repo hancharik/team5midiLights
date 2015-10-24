@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +35,7 @@ public class PeriodicTable extends JPanel implements ActionListener{
     JLabel atomicMassLabel; 
      
     JButton backButton; 
+    JLabel backLabel; 
     JButton showCardsButton;
     
     
@@ -59,9 +61,22 @@ public class PeriodicTable extends JPanel implements ActionListener{
        
        
        
+       backLabel = new JLabel("Back"); 
+       backLabel.setBounds(column(1), row(9), 120, 40);
+      // backLabel.addActionListener(this);
+       backLabel.setIcon(new ImageIcon("images/exit200x100.png"));
+       //add(backLabel);
+       
+       
+       
+       
+       
+       
        backButton = new JButton("Back"); 
        backButton.setBounds(column(1), row(12), 120, 40);
        backButton.addActionListener(this);
+       backButton.setBorderPainted(false);
+       backButton.setIcon(new ImageIcon("images/exit200x100.png"));
        add(backButton);
        
        
@@ -217,69 +232,69 @@ public class PeriodicTable extends JPanel implements ActionListener{
            
             case 1 :  elementName = "Hydrogen"; elementSymbol = "H"; elementNumber = e; family = 1; atomicMass = 1.008; break;
             case 2 :  elementName = "Helium"; elementSymbol = "He"; elementNumber = e; family = 8; atomicMass = 4.003; break;
-            case 3 :  elementName = "Lithium"; elementSymbol = "Li"; elementNumber = e; family = 2; break;
-            case 4 :  elementName = "Beryllium"; elementSymbol = "Be"; elementNumber = e; family = 3; break;
-            case 5 :  elementName = "Boron"; elementSymbol = "B"; elementNumber = e; family = 6; break;
-            case 6 :  elementName = "Carbon"; elementSymbol = "C"; elementNumber = e; family = 1; break;
-            case 7 :  elementName = "Nitrogen"; elementSymbol = "N"; elementNumber = e; family = 1; break;
-            case 8 :  elementName = "Oxygen"; elementSymbol = "O"; elementNumber = e; family = 1; break;
-            case 9 :  elementName = "Flourine"; elementSymbol = "F"; elementNumber = e; family = 7; break;
-            case 10 :  elementName = "Neon"; elementSymbol = "Ne"; elementNumber = e; family = 8; break;
-	    case 11 :  elementName = "Sodium"; elementSymbol = "Na"; elementNumber = e; family = 2; break;
-            case 12 :  elementName = "Magnesium"; elementSymbol = "Mg"; elementNumber = e; family = 3; break;
-            case 13 :  elementName = "Aluminum"; elementSymbol = "Al"; elementNumber = e; family = 5; break;
-            case 14 :  elementName = "Silicon"; elementSymbol = "Si"; elementNumber = e; family = 6; break;
-            case 15 :  elementName = "Phosphorus"; elementSymbol = "P"; elementNumber = e; family = 1; break;
-            case 16 :  elementName = "Sulphur"; elementSymbol = "S"; elementNumber = e; family = 1; break;
-            case 17 :  elementName = "Chlorine"; elementSymbol = "Cl"; elementNumber = e; family = 7; break;
-            case 18 :  elementName = "Argon"; elementSymbol = "Ar"; elementNumber = e; family = 8; break;
-            case 19 :  elementName = "Potassium"; elementSymbol = "K"; elementNumber = e; family = 2; break;
-	    case 20 :  elementName = "Calcium"; elementSymbol = "Ca"; elementNumber = e; family = 3; break;
-	    case 21 :  elementName = "Scandium"; elementSymbol = "Sc"; elementNumber = e; family = 4; break;
-            case 22 :  elementName = "Titanium"; elementSymbol = "Ti"; elementNumber = e; family = 4; break;
-            case 23 :  elementName = "Vanadium"; elementSymbol = "V"; elementNumber = e;  family = 4; break;
-            case 24 :  elementName = "Chromium"; elementSymbol = "Cr"; elementNumber = e; family = 4; break;
-            case 25 :  elementName = "Manganese"; elementSymbol = "Mn"; elementNumber = e;  family = 4; break;
-            case 26 :  elementName = "Iron"; elementSymbol = "Fe"; elementNumber = e;  family = 4; break;
-            case 27 :  elementName = "Cobalt"; elementSymbol = "Co"; elementNumber = e;  family = 4; break;
-            case 28 :  elementName = "Nickel"; elementSymbol = "Ni"; elementNumber = e;  family = 4; break;
-            case 29 :  elementName = "Copper"; elementSymbol = "Cu"; elementNumber = e;  family = 4; break;
-	    case 30 :  elementName = "Zinc"; elementSymbol = "Zn"; elementNumber = e;  family = 4; break;
-	    case 31 :  elementName = "Gallium"; elementSymbol = "Ga"; elementNumber = e; family = 5; break;
-            case 32 :  elementName = "Germanium"; elementSymbol = "Ge"; elementNumber = e; family = 6; break;
-            case 33 :  elementName = "Arsenic"; elementSymbol = "As"; elementNumber = e; family = 6; break;
-            case 34 :  elementName = "Selenium"; elementSymbol = "Se"; elementNumber = e; family = 1; break;
-            case 35 :  elementName = "Bromine"; elementSymbol = "Br"; elementNumber = e; family = 7; break;
-            case 36 :  elementName = "Krypton"; elementSymbol = "Kr"; elementNumber = e; family = 8; break;
-            case 37 :  elementName = "Rubidium"; elementSymbol = "Rb"; elementNumber = e; family = 2; break;
-            case 38 :  elementName = "Strontium"; elementSymbol = "Sr"; elementNumber = e;  family = 3; break;
-            case 39 :  elementName = "Yttrium"; elementSymbol = "Y"; elementNumber = e;  family = 4; break;
-	    case 40 :  elementName = "Zirconium"; elementSymbol = "Zr"; elementNumber = e;  family = 4; break;
-	    case 41 :  elementName = "Niobium"; elementSymbol = "Nb"; elementNumber = e;  family = 4; break;
-            case 42 :  elementName = "Molbydenum"; elementSymbol = "Mo"; elementNumber = e;  family = 4; break;
-            case 43 :  elementName = "Technetium"; elementSymbol = "Tc"; elementNumber = e;  family = 4; break;
-            case 44 :  elementName = "Ruthenium"; elementSymbol = "Ru"; elementNumber = e;  family = 4; break;
-            case 45 :  elementName = "Rhodium"; elementSymbol = "Rh"; elementNumber = e;  family = 4; break;
-            case 46 :  elementName = "Palladium"; elementSymbol = "Pd"; elementNumber = e;  family = 4; break;
-            case 47 :  elementName = "Silver"; elementSymbol = "Ag"; elementNumber = e;  family = 4; break;
-            case 48 :  elementName = "Cadmium"; elementSymbol = "Cd"; elementNumber = e;  family = 4; break;
-            case 49 :  elementName = "Indium"; elementSymbol = "In"; elementNumber = e; family = 5; break;
-	    case 50 :  elementName = "Tin"; elementSymbol = "Sn"; elementNumber = e; family = 5; break;
-	    case 51 :  elementName = "Antimony"; elementSymbol = "Sb"; elementNumber = e; family = 6; break;
-            case 52 :  elementName = "Tellurium"; elementSymbol = "Te"; elementNumber = e; family = 6; break;
-            case 53 :  elementName = "Iodine"; elementSymbol = "I"; elementNumber = e; family = 7; break;
-            case 54 :  elementName = "Xenon"; elementSymbol = "Xe"; elementNumber = e; family = 8; break;
-            case 55 :  elementName = "Cesium"; elementSymbol = "Cs"; elementNumber = e; family = 2; break;
-            case 56 :  elementName = "Barium"; elementSymbol = "Ba"; elementNumber = e;  family = 3; break;
-            case 57 :  elementName = "Lanthanum"; elementSymbol = "La"; elementNumber = e; family = 9; break;
-            case 58 :  elementName = "Cerium"; elementSymbol = "Ce"; elementNumber = e; family = 9; break;
-            case 59 :  elementName = "Praseodymium"; elementSymbol = "Pr"; elementNumber = e; family = 9; break;
-	    case 60 :  elementName = "Neodymium"; elementSymbol = "Nd"; elementNumber = e; family = 9; break;
-            case 61 :  elementName = "Promethium"; elementSymbol = "Pm"; elementNumber = e; family = 9; break;
-            case 62 :  elementName = "Samarium"; elementSymbol = "Sm"; elementNumber = e; family = 9; break;
-            case 63 :  elementName = "Europium"; elementSymbol = "Eu"; elementNumber = e; family = 9; break;
-            case 64 :  elementName = "Gadolinium"; elementSymbol = "Gd"; elementNumber = e; family = 9; break;
-            case 65 :  elementName = "Terbium"; elementSymbol = "Tb"; elementNumber = e; family = 9; break;
+            case 3 :  elementName = "Lithium"; elementSymbol = "Li"; elementNumber = e; family = 2; atomicMass = 6.941; break;
+            case 4 :  elementName = "Beryllium"; elementSymbol = "Be"; elementNumber = e; family = 3; atomicMass = 9.012; break;
+            case 5 :  elementName = "Boron"; elementSymbol = "B"; elementNumber = e; family = 6; atomicMass = 10.811; break;
+            case 6 :  elementName = "Carbon"; elementSymbol = "C"; elementNumber = e; family = 1; atomicMass = 12.011; break;
+            case 7 :  elementName = "Nitrogen"; elementSymbol = "N"; elementNumber = e; family = 1; atomicMass = 14.007; break;
+            case 8 :  elementName = "Oxygen"; elementSymbol = "O"; elementNumber = e; family = 1; atomicMass = 15.999; break;
+            case 9 :  elementName = "Flourine"; elementSymbol = "F"; elementNumber = e; family = 7; atomicMass = 18.998; break;
+            case 10 :  elementName = "Neon"; elementSymbol = "Ne"; elementNumber = e; family = 8; atomicMass = 20.180; break;
+	    case 11 :  elementName = "Sodium"; elementSymbol = "Na"; elementNumber = e; family = 2; atomicMass = 22.990; break;
+            case 12 :  elementName = "Magnesium"; elementSymbol = "Mg"; elementNumber = e; family = 3; atomicMass = 24.305; break;
+            case 13 :  elementName = "Aluminum"; elementSymbol = "Al"; elementNumber = e; family = 5; atomicMass = 26.982; break;
+            case 14 :  elementName = "Silicon"; elementSymbol = "Si"; elementNumber = e; family = 6; atomicMass = 28.086; break;
+            case 15 :  elementName = "Phosphorus"; elementSymbol = "P"; elementNumber = e; family = 1; atomicMass = 30.974; break;
+            case 16 :  elementName = "Sulphur"; elementSymbol = "S"; elementNumber = e; family = 1; atomicMass = 32.066; break;
+            case 17 :  elementName = "Chlorine"; elementSymbol = "Cl"; elementNumber = e; family = 7; atomicMass = 35.453; break;
+            case 18 :  elementName = "Argon"; elementSymbol = "Ar"; elementNumber = e; family = 8; atomicMass = 39.948; break;
+            case 19 :  elementName = "Potassium"; elementSymbol = "K"; elementNumber = e; family = 2; atomicMass = 39.098; break;
+	    case 20 :  elementName = "Calcium"; elementSymbol = "Ca"; elementNumber = e; family = 3; atomicMass = 40.078; break;
+	    case 21 :  elementName = "Scandium"; elementSymbol = "Sc"; elementNumber = e; family = 4; atomicMass = 44.956; break;
+            case 22 :  elementName = "Titanium"; elementSymbol = "Ti"; elementNumber = e; family = 4; atomicMass = 47.880; break;
+            case 23 :  elementName = "Vanadium"; elementSymbol = "V"; elementNumber = e;  family = 4; atomicMass = 50.942; break;
+            case 24 :  elementName = "Chromium"; elementSymbol = "Cr"; elementNumber = e; family = 4; atomicMass = 51.996; break;
+            case 25 :  elementName = "Manganese"; elementSymbol = "Mn"; elementNumber = e;  family = 4; atomicMass = 54.938; break;
+            case 26 :  elementName = "Iron"; elementSymbol = "Fe"; elementNumber = e;  family = 4; atomicMass = 55.933; break;
+            case 27 :  elementName = "Cobalt"; elementSymbol = "Co"; elementNumber = e;  family = 4; atomicMass = 58.933; break;
+            case 28 :  elementName = "Nickel"; elementSymbol = "Ni"; elementNumber = e;  family = 4; atomicMass = 58.693; break;
+            case 29 :  elementName = "Copper"; elementSymbol = "Cu"; elementNumber = e;  family = 4; atomicMass = 63.546; break;
+	    case 30 :  elementName = "Zinc"; elementSymbol = "Zn"; elementNumber = e;  family = 4;  atomicMass = 65.390; break;
+	    case 31 :  elementName = "Gallium"; elementSymbol = "Ga"; elementNumber = e; family = 5; atomicMass = 69.732; break;
+            case 32 :  elementName = "Germanium"; elementSymbol = "Ge"; elementNumber = e; family = 6; atomicMass = 72.610; break;
+            case 33 :  elementName = "Arsenic"; elementSymbol = "As"; elementNumber = e; family = 6;  atomicMass = 74.922; break;
+            case 34 :  elementName = "Selenium"; elementSymbol = "Se"; elementNumber = e; family = 1;  atomicMass = 78.090; break;
+            case 35 :  elementName = "Bromine"; elementSymbol = "Br"; elementNumber = e; family = 7;  atomicMass = 79.904; break;
+            case 36 :  elementName = "Krypton"; elementSymbol = "Kr"; elementNumber = e; family = 8;  atomicMass = 84.800; break;
+            case 37 :  elementName = "Rubidium"; elementSymbol = "Rb"; elementNumber = e; family = 2;  atomicMass = 84.468; break;
+            case 38 :  elementName = "Strontium"; elementSymbol = "Sr"; elementNumber = e;  family = 3;  atomicMass = 87.620; break;
+            case 39 :  elementName = "Yttrium"; elementSymbol = "Y"; elementNumber = e;  family = 4;  atomicMass = 88.906; break;
+	    case 40 :  elementName = "Zirconium"; elementSymbol = "Zr"; elementNumber = e;  family = 4;  atomicMass = 91.224; break;
+	    case 41 :  elementName = "Niobium"; elementSymbol = "Nb"; elementNumber = e;  family = 4;  atomicMass = 92.906; break;
+            case 42 :  elementName = "Molbydenum"; elementSymbol = "Mo"; elementNumber = e;  family = 4;  atomicMass = 95.940; break;
+            case 43 :  elementName = "Technetium"; elementSymbol = "Tc"; elementNumber = e;  family = 4; atomicMass = 98.907; break;
+            case 44 :  elementName = "Ruthenium"; elementSymbol = "Ru"; elementNumber = e;  family = 4;  atomicMass = 101.07; break;
+            case 45 :  elementName = "Rhodium"; elementSymbol = "Rh"; elementNumber = e;  family = 4;  atomicMass = 102.906; break;
+            case 46 :  elementName = "Palladium"; elementSymbol = "Pd"; elementNumber = e;  family = 4;  atomicMass = 106.420; break;
+            case 47 :  elementName = "Silver"; elementSymbol = "Ag"; elementNumber = e;  family = 4;  atomicMass = 107.868; break;
+            case 48 :  elementName = "Cadmium"; elementSymbol = "Cd"; elementNumber = e;  family = 4;  atomicMass = 112.411; break;
+            case 49 :  elementName = "Indium"; elementSymbol = "In"; elementNumber = e; family = 5;  atomicMass = 114.818; break;
+	    case 50 :  elementName = "Tin"; elementSymbol = "Sn"; elementNumber = e; family = 5;  atomicMass = 118.710; break;
+	    case 51 :  elementName = "Antimony"; elementSymbol = "Sb"; elementNumber = e; family = 6;  atomicMass = 121.760; break;
+            case 52 :  elementName = "Tellurium"; elementSymbol = "Te"; elementNumber = e; family = 6; atomicMass = 127.600; break;
+            case 53 :  elementName = "Iodine"; elementSymbol = "I"; elementNumber = e; family = 7; atomicMass = 126.904; break;
+            case 54 :  elementName = "Xenon"; elementSymbol = "Xe"; elementNumber = e; family = 8; atomicMass = 131.290; break;
+            case 55 :  elementName = "Cesium"; elementSymbol = "Cs"; elementNumber = e; family = 2; atomicMass = 132.905; break;
+            case 56 :  elementName = "Barium"; elementSymbol = "Ba"; elementNumber = e;  family = 3; atomicMass = 137.327; break;
+            case 57 :  elementName = "Lanthanum"; elementSymbol = "La"; elementNumber = e; family = 9; atomicMass = 138.906; break;
+            case 58 :  elementName = "Cerium"; elementSymbol = "Ce"; elementNumber = e; family = 9; atomicMass = 140.115; break;
+            case 59 :  elementName = "Praseodymium"; elementSymbol = "Pr"; elementNumber = e; family = 9; atomicMass = 140.908; break;
+	    case 60 :  elementName = "Neodymium"; elementSymbol = "Nd"; elementNumber = e; family = 9; atomicMass = 144.240; break;
+            case 61 :  elementName = "Promethium"; elementSymbol = "Pm"; elementNumber = e; family = 9; atomicMass = 144.913; break;
+            case 62 :  elementName = "Samarium"; elementSymbol = "Sm"; elementNumber = e; family = 9; atomicMass = 150.360; break;
+            case 63 :  elementName = "Europium"; elementSymbol = "Eu"; elementNumber = e; family = 9; atomicMass = 151.966; break;
+            case 64 :  elementName = "Gadolinium"; elementSymbol = "Gd"; elementNumber = e; family = 9; atomicMass = 157.250; break;
+            case 65 :  elementName = "Terbium"; elementSymbol = "Tb"; elementNumber = e; family = 9; atomicMass = 158.925; break;
             case 66 :  elementName = "Dysprosium"; elementSymbol = "Dy"; elementNumber = e; family = 9; break;
             case 67 :  elementName = "Holmium"; elementSymbol = "Ho"; elementNumber = e; family = 9; break;
             case 68 :  elementName = "Erbium"; elementSymbol = "Er"; elementNumber = e; family = 9; break;
@@ -580,6 +595,10 @@ public void colorElement(int r){
         
         Object o = e.getSource();
         if(o == backButton){
+            
+            space.Space.screen.startPanel();
+            
+        }else if(o == backLabel){
             
             space.Space.screen.startPanel();
             
