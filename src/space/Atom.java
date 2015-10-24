@@ -443,7 +443,15 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                         
                   space.Space.screen.startPanel();      
 		}
-                
+                      if(k == e.VK_P){
+                        
+                  timer.stop();
+		}
+                    
+                     if(k == e.VK_O){
+                        
+                  timer.start();
+		}
                 
                 if(k == e.VK_R){
                         
@@ -509,7 +517,15 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                   space.Space.screen.startPanel();      
 		}
                 
-                
+                      if(k == e.VK_P){
+                        
+                  timer.stop();
+		}
+                    
+                     if(k == e.VK_O){
+                        
+                  timer.start();
+		}
                 
                 
                if(k == e.VK_R){
