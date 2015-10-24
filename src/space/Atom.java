@@ -80,6 +80,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
        setLayout(null);
        setBackground(Color.black);
        addMouseListener(this);
+       addKeyListener(this);
        setVariables();
        
        electrons = new ArrayList();
@@ -90,7 +91,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
         addElectrons();
       
         
-        electrons.add(centerPoint);
+        //electrons.add(centerPoint);
       
   /////////////////////////////////////////////
         //////////////////////////////////////
@@ -194,7 +195,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
         centerPoint.setBackground(Color.YELLOW);
         centerPoint.addActionListener(this);
         centerPoint.addKeyListener(this);
-        centerPoint.setVisible(false);
+       // centerPoint.setVisible(false);
         if(space.Space.showStallman){
             sizeOfNucleus = space.Space.globalStallmanSize;
         centerPoint.makeHero();

@@ -18,10 +18,20 @@ import java.awt.Toolkit;
 public class Space {
     
 
+    
+    
+    public static Aframe screen;// = new Aframe();
+    
+    
+    
+    
+    
+    
+    
     public static double universalGravitationConstant = 6.673;
     public static double universalGravitationConstantMultiplier = .001;  //this is a double value in powers of ten
     
-    public static Aframe screen;// = new Aframe();
+    
     public static double height = 1000;
     public static double width = 1880;
   

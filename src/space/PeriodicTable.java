@@ -77,7 +77,7 @@ public class PeriodicTable extends JPanel implements ActionListener{
        backButton.addActionListener(this);
        backButton.setBorderPainted(false);
        backButton.setIcon(new ImageIcon("images/exit200x100.png"));
-       add(backButton);
+       //add(backButton);
        
        
        showCardsButton = new JButton("Hide Card"); 

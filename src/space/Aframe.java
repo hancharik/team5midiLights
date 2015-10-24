@@ -71,7 +71,7 @@ public class Aframe extends JFrame{
 		getContentPane().add(ev,"Center");
                 //setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-       // gamePanel.helio.requestFocus();
+                ev.pt.a.centerPoint.requestFocus();
         
     }
     
@@ -94,8 +94,8 @@ public class Aframe extends JFrame{
                 atom = new Atom();
                 getContentPane().add(atom,"Center");
                 setVisible(true);
-                gamePanel.helio.requestFocus();
-        
+                //atom.nucleus.get(0).requestFocus();
+                atom.centerPoint.requestFocus();
     }    
      
      

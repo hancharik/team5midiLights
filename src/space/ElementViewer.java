@@ -15,11 +15,15 @@ import javax.swing.JPanel;
 public class ElementViewer extends JPanel{
    
     
+    PeriodicTable pt;
+    
+    
+    
     public ElementViewer(){
             super();
        setLayout(null);
        setBackground(Color.red);
-            PeriodicTable pt = new PeriodicTable();
+            pt = new PeriodicTable();
            
             pt.setBounds(0, 0, (int)space.Space.width, (int)space.Space.height);
              add(pt);
