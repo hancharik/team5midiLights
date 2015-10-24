@@ -183,6 +183,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
             ship.yVel = 5.0;
             electrons.add(ship);  // this is how we add movement, we just add the ship to the particle array and it gets moved when all of the other electrons get moved
             ship.makeShip(1, 1);// first 1 is type (1=="ufo"), second 1 is id number
+            ship.setBorderPainted(false);
             add(ship);
       }
         
@@ -191,10 +192,11 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
          //sizeOfNucleus = space.Space.globalHelioSize;
          
         centerPoint = new Sbutton();
-        centerPoint.setBounds(Xcord, Ycord, 1, 1);
+        centerPoint.setBounds(Xcord, Ycord, 0, 0);
         centerPoint.setBackground(Color.YELLOW);
         centerPoint.addActionListener(this);
         centerPoint.addKeyListener(this);
+        centerPoint.setBorderPainted(false);
        // centerPoint.setVisible(false);
         if(space.Space.showStallman){
             sizeOfNucleus = space.Space.globalStallmanSize;
@@ -240,7 +242,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
         a.yVel = ysp;
         a.mass = space.Space.globalParticleMass;
         a.addActionListener(this);
-       
+        a.setBorderPainted(false);
        // a.speedLimit = speedlimit;//(int)(Math.random() * speedlimit) + minSpeed;
        // a.setColor(speedlimit);
          electrons.add(a);
@@ -281,6 +283,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
         proton.mass = space.Space.globalParticleMass;
         proton.addActionListener(this);
         proton.speedLimit = (numberOfElectrons/18)+1;
+        proton.setBorderPainted(false);
         nucleus.add(proton);
         add(proton);   
         
@@ -292,6 +295,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
         neutron.mass = space.Space.globalParticleMass;
         neutron.addActionListener(this);
         neutron.speedLimit = (numberOfElectrons/18)+1;
+        neutron.setBorderPainted(false);
         nucleus.add(neutron);
         add(neutron); 
         

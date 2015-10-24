@@ -200,6 +200,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
        // a.makeZombie();
         a.speedLimit = (int)(Math.random() * speedlimit) + minSpeed;
         a.setColor(speedlimit);
+        a.setBorderPainted(false);
          particles.add(a);
         add(a);   
         
