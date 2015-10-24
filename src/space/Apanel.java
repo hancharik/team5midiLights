@@ -295,7 +295,15 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                         
                   space.Space.screen.startPanel();      
 		}
-                
+                      if(k == e.VK_P){
+                        
+                  timer.stop();
+		}
+                    
+                     if(k == e.VK_O){
+                        
+                  timer.start();
+		}
                 
                 if(k == e.VK_R){
                         
@@ -361,7 +369,17 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                   space.Space.screen.startPanel();      
 		}
                 
-                
+                  
+                  
+                    if(k == e.VK_P){
+                        
+                  timer.stop();
+		}
+                    
+                     if(k == e.VK_O){
+                        
+                  timer.start();
+		}
                if(k == e.VK_R){
                         
                      Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
