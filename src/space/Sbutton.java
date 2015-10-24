@@ -17,8 +17,8 @@ public class Sbutton extends JButton{
     
    
     
-    double xVel = 30.0;
-    double yVel = -10.0;
+    double xVel = 0.0;
+    double yVel = 0.0;
     int speedLimit;// = arena.Arena.screen.gamePanel.speedlimit;
     double mass;// = space.Space.globalParticleMass;
     

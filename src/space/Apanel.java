@@ -5,6 +5,7 @@
 package space;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -54,10 +56,12 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     int Ycord;/// = (int) (Math.random() * 340) + 1;
     
     
+    JPanel infoCard;
+    JLabel xVelocityLabel;
+    JLabel yVelocityLabel;
     
-    
-    
-    
+    double xVelocityDouble;
+    double yVelocityDouble; 
     
     
     public Apanel(){
@@ -74,11 +78,24 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         particles = new ArrayList();
         addHelio();
         particles.add(helio);
-        
-      addParticles();
+        addParticles();
       
   
-      
+        xVelocityLabel = new JLabel("X Velocity = " + xVelocityDouble);
+        yVelocityLabel = new JLabel("Y Velocity = " + yVelocityDouble);
+        xVelocityLabel.setBounds(20, 20, 200, 40);
+        yVelocityLabel.setBounds(20, 70, 200, 40);
+        xVelocityLabel.setVisible(false);
+        yVelocityLabel.setVisible(false);
+        add(xVelocityLabel);
+        add(yVelocityLabel);
+       /// makeCardPanel();
+       // infoCard.setVisible(false);
+       // add(infoCard);
+        
+        
+        
+        
      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
       // if we have this, do we need the stuff at the bottom?
       addMouseListener(new MouseAdapter() {
@@ -224,19 +241,51 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                     moveParticle();
 
 
-                }
-        
-        
-       
-   
-
-		if (obj == helio){
+                }else if (obj == helio){
                     
                     timer.stop();
                   
                     space.Space.screen.startPanel();
                   
+                }else{
+        
+        
+        	//Element obj = (Element)e.getSource();
+        
+                
+                for(int k = 0; k < particles.size(); k++){
+                    
+                
+                
+                            if (obj == particles.get(k)){
+                                
+                                
+                                //xVelocityDouble = particles.get(k).xVel;
+                                //yVelocityDouble = particles.get(k).yVel;
+                                xVelocityLabel.setText("<html><h2><font color='white'>X Velocity = </font><font color='red'>" + particles.get(k).xVel + "</font><h2></html>");
+                                yVelocityLabel.setText("<html><h2><font color='white'>Y Velocity = </font><font color='red'>" + particles.get(k).yVel + "</font><h2></html>");
+                                xVelocityLabel.setVisible(true);
+                                yVelocityLabel.setVisible(true);
+                                //infoCard.repaint();
+                                //makeCardPanel();
+                                                //infoCard.setBackground(Color.white);
+                                              // space.Space.globalElementSymbol =  particles.get(k).elementSymbol;
+                                               // space.Space.globalElementName = particles.get(k).elementName;
+                                               // space.Space.globalElementNumber = particles.get(k).elementNumber;
+                                              //  space.Space.globalAtomicMass = particles.get(k).atomicMass;
+                                               // infoCard.setVisible(true);
+                                                 helio.requestFocus();
+                                           // }else{
+
+                                              //  cardHolder.setVisible(false);
+                                           // }  // end if(space.Space.showCards){
+                               // space.Space.screen.elementViewerPanel();  
+  
+                            }  // enf if obj == elements.get(k)
+  
                 }
+  
+        }
     
     } // end action performed
          
@@ -246,7 +295,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
          
          
 
-    @Override
+    @Override  // I DON'T THINK WE NEED THIS ONE, I DON'T THINK IT WORKS
     public void keyTyped(KeyEvent e) {
         int k = e.getKeyCode();
 		if(k == e.VK_UP){
@@ -302,8 +351,9 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		}
                     
                      if(k == e.VK_O){
-                        
-                  timer.start();
+                    xVelocityLabel.setVisible(false);
+                    yVelocityLabel.setVisible(false);    
+                    timer.start();
 		}
                 
                 if(k == e.VK_R){
@@ -378,9 +428,12 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		}
                     
                      if(k == e.VK_O){
-                        
-                  timer.start();
+                    xVelocityLabel.setVisible(false);
+                    yVelocityLabel.setVisible(false);    
+                    timer.start();
 		}
+                     
+                     
                if(k == e.VK_R){
                         
                      Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
@@ -740,5 +793,45 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     repaint();
   }
 
-    
-}
+ 
+      
+      
+      
+      
+      
+      
+    public void makeCardPanel(){
+        
+        infoCard = new JPanel( new GridLayout(1,2));
+        infoCard.setBounds(20, 20, 200, 300);
+        infoCard.addKeyListener(this);
+        infoCard.setBackground(Color.white);
+        xVelocityLabel = new JLabel("X Velocity = " + xVelocityDouble);
+        yVelocityLabel = new JLabel("Y Velocity = " + yVelocityDouble);
+      
+        infoCard.add(xVelocityLabel);
+        infoCard.add(xVelocityLabel);
+        
+        
+    }  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+}  // end
