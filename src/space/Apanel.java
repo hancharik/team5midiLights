@@ -133,8 +133,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
      enemySpeed = space.Space.globalEnemySpeed;
     
     helioSpeed = 10;
-    timerSpeed = space.Space.globalTimerSpeed;
-     speedlimit = space.Space.globalSpeedlimit;// + helioSize;// douglas adams is max
+    timerSpeed = space.Space.globalTimerSpeed;//  42 is good viewing (24 fps?)
+     speedlimit = space.Space.globalSpeedlimit;// + helioSize;
      minSpeed = space.Space.globalMinSpeed;
      
      screenWidth = (int)space.Space.width;
@@ -159,7 +159,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
             ship.xVel = 5.0;
             ship.yVel = 5.0;
             particles.add(ship);  // this is how we add movement, we just add the ship to the particle array and it gets moved when all of the other particles get moved
-            ship.makeShip(1, 1);// first 1 is type (1=="ufo"), second 1 is id number
+            //ship.makeShip(1, 1);// first 1 is type (1=="ufo"), second 1 is id number
             add(ship);
       }
         
@@ -205,16 +205,15 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
          
          
          
-          Sbutton a = new Sbutton();
+        Sbutton a = new Sbutton();
          
-        //particles.get(i) = new Sbutton();
+        
         a.setBounds(Xcord, Ycord, playerSize, playerSize);
         a.setBackground(Color.red);
         a.xVel = xsp;
         a.yVel = ysp;
         a.mass = space.Space.globalParticleMass;
         a.addActionListener(this);
-       // a.makeZombie();
         a.speedLimit = (int)(Math.random() * speedlimit) + minSpeed;
         a.setColor(speedlimit);
         a.setBorderPainted(false);
@@ -250,10 +249,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 }else{
         
         
-        	//Element obj = (Element)e.getSource();
-        
-                
-                for(int k = 0; k < particles.size(); k++){
+        	for(int k = 0; k < particles.size(); k++){
                     
                 
                 
@@ -266,19 +262,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                                 yVelocityLabel.setText("<html><h2><font color='white'>Y Velocity = </font><font color='red'>" + particles.get(k).yVel + "</font><h2></html>");
                                 xVelocityLabel.setVisible(true);
                                 yVelocityLabel.setVisible(true);
-                                //infoCard.repaint();
-                                //makeCardPanel();
-                                                //infoCard.setBackground(Color.white);
-                                              // space.Space.globalElementSymbol =  particles.get(k).elementSymbol;
-                                               // space.Space.globalElementName = particles.get(k).elementName;
-                                               // space.Space.globalElementNumber = particles.get(k).elementNumber;
-                                              //  space.Space.globalAtomicMass = particles.get(k).atomicMass;
-                                               // infoCard.setVisible(true);
-                                                 helio.requestFocus();
-                                           // }else{
-
-                                              //  cardHolder.setVisible(false);
-                                           // }  // end if(space.Space.showCards){
+                                helio.requestFocus();  //   <-- because helio has the key listener
+                                           
                                // space.Space.screen.elementViewerPanel();  
   
                             }  // enf if obj == elements.get(k)
@@ -443,12 +428,14 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 
                   if(k == e.VK_Q){
                         
-                  ship.mass = 0.0;      
+                  ship.mass = 0.0;   
+                  ship.setBackground(Color.BLUE);
 		}
                 
                   if(k == e.VK_W){
                         
-                  ship.mass = space.Space.globalShipMass;      
+                  ship.mass = space.Space.globalShipMass;  
+                  ship.setBackground(Color.GRAY);
 		}
                 
                 
@@ -462,62 +449,11 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     }
  
     
+
     
     
-    /*
-     public void moveParticles(){
-       
-         
-         for(int i = 0; i < particles.size(); i++){
-             
-             
-             
-             
-              for(int j = 0; j < particles.size(); j++){
-      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-                    double totalGravity = 0.0;
-                    int moveX = 0;
-                    int moveY = 0;
-                                   
-                            if(i != j){ // don't calculate gravity on yourself
-                                    totalGravity  = calculateGravity(particles.get(i).getX(),particles.get(i).getY(), particles.get(j).getX(),particles.get(j).getY(), particles.get(i).mass, particles.get(j).mass);
-                                    moveX = (particles.get(i).getX()+ (particles.get(i).getWidth()/2)) - (particles.get(j).getX()+ (particles.get(j).getWidth()/2));
-                                    moveY = (particles.get(i).getY()+ (particles.get(i).getWidth()/2)) - (particles.get(j).getY()+ (particles.get(j).getWidth()/2));
-                                   
-                                   
-                                        
-                                    if (moveX > 0){
-                                       particles.get(i).xVel = particles.get(i).xVel - totalGravity;
-                                    }else if (moveX < 0){
-                                       particles.get(i).xVel = particles.get(i).xVel + totalGravity;
-                                    }else{
-                                      // if zero, do nothing    
-                                    }
-
-                                    if (moveY > 0){
-                                        particles.get(i).yVel = particles.get(i).yVel - totalGravity;
-                                   }else if (moveY < 0){
-                                       particles.get(i).yVel = particles.get(i).yVel + totalGravity;
-                                    }else{
-                                      // if zero, do nothing  
-                                    }
-
-                            }
-                        
-                 } // end for j loop
-             
-            particles.get(i).move();
-            }  // end for i loop
-       
-   }   // end move particles
-*/
-
-     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     
-     
-     
+    
+    
      
      public void moveParticle(){
        
@@ -638,7 +574,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     
     
-    
+    // i haven't tried, but can we try calling a method in the whatchamacallit?:
+     //public double calculateGravity(getDistance(int x, int y, int dx, int dy), double m1, double m2){
     
     
     public double calculateGravity(int x, int y, int dx, int dy, double m1, double m2){
@@ -771,12 +708,12 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
  //http://stackoverflow.com/questions/20011091/move-over-a-jpanel-with-mouse-dragged
                 public void mouseDragged(MouseEvent e) {

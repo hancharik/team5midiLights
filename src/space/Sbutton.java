@@ -27,6 +27,7 @@ public class Sbutton extends JButton{
         
         super();
         mass = space.Space.globalParticleMass;
+        this.setBorderPainted(false);
         //randomizeIcons();
         
     }
