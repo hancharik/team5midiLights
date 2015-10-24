@@ -438,6 +438,12 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                   space.Space.screen.restart();      
 		}
                 
+                if(k == e.VK_X){
+                        
+                  space.Space.screen.startPanel();      
+		}
+                
+                
                 if(k == e.VK_R){
                         
                      Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
@@ -495,6 +501,14 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                         
                   space.Space.screen.restart();      
 		}
+                
+                
+                 if(k == e.VK_X){
+                        
+                  space.Space.screen.startPanel();      
+		}
+                
+                
                 
                 
                if(k == e.VK_R){
