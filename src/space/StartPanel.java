@@ -215,18 +215,21 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        checkrmsPic();
        showrms.setBounds(column(1), row(1), 200, 100);
        showrms.addActionListener(this);
+       showrms.setBorderPainted(false);
        add(showrms); 
         
        showElementsButton = new JButton("Show Elements");
        showElementsButton.setBounds(column(2), row(1), 200, 100);
        showElementsButton.addActionListener(this);
        showElementsButton.setIcon(new ImageIcon("images/pTable200x100.png"));
+       showElementsButton.setBorderPainted(false);
        add(showElementsButton);       
        
        shipSelectorButton = new JButton("Select Ship");
        shipSelectorButton.setBounds(column(4), row(1), 200, 100);
        shipSelectorButton.addActionListener(this);
        shipSelectorButton.setIcon(new ImageIcon("images/ufo200x100.png"));
+       shipSelectorButton.setBorderPainted(false);
        if(!space.Space.thereIsAShip){
         shipSelectorButton.setVisible(false);
        }
@@ -510,6 +513,7 @@ space.Space.globalParticleSizeMultiplier = 2;
             if(space.Space.showStallman){
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/be200x100.png")); 
+                
            space.Space.showStallman = false;   
           // space.Space.gravityGetsStronger = false;
             }else{
