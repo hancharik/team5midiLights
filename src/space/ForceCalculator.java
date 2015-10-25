@@ -1,8 +1,15 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package space;
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,7 +28,7 @@ import javax.swing.event.ChangeListener;
  *
  * @author Mark
  */
-public class StartPanel extends JPanel implements ActionListener, ChangeListener{
+public class ForceCalculator extends JPanel implements ActionListener, ChangeListener{
 
     JButton startPlanetButton;
     JButton startAtomButton;
@@ -69,7 +76,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     
     
     
-    public StartPanel(){
+    public ForceCalculator(){
         
        super();
        setLayout(null);
@@ -221,7 +228,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        showElementsButton = new JButton("Show Elements");
        showElementsButton.setBounds(column(2), row(1), 200, 100);
        showElementsButton.addActionListener(this);
-       showElementsButton.setIcon(new ImageIcon("images/pTable200x100.png"));
+       showElementsButton.setIcon(new ImageIcon("images/fc6000.png"));
        showElementsButton.setBorderPainted(false);
        add(showElementsButton);       
        
@@ -362,8 +369,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                             space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
                             space.Space.globalMinSpeed = 12;
            
-                   // space.Space.screen.elementViewerPanel();  
-                     space.Space.screen.startFC6000();
+                    space.Space.screen.elementViewerPanel();  
+
 
                   }// end show elements button  
         

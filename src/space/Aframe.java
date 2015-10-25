@@ -30,6 +30,8 @@ public class Aframe extends JFrame{
     
     ElementViewer ev; //= new ElementViewer();
     
+    ForceCalculator forceCalc6000;// = new ForceCalculator();
+    
     
     public Aframe(){
         
@@ -49,14 +51,13 @@ public class Aframe extends JFrame{
     public void startPanel(){
         
         getContentPane().removeAll();
-        //getContentPane().setLayout(new BorderLayout());
-               // setSize (width, height);
+        
                 startPanel = new StartPanel();
                 
 		getContentPane().add(startPanel,"Center");
-                //setDefaultCloseOperation(EXIT_ON_CLOSE);
+                
 		setVisible(true);
-       // gamePanel.helio.requestFocus();
+     
         
     }
     
@@ -64,12 +65,11 @@ public class Aframe extends JFrame{
         public void elementViewerPanel(){
         
         getContentPane().removeAll();
-        //getContentPane().setLayout(new BorderLayout());
-               // setSize (width, height);
+       
                 ev = new ElementViewer();
                 
 		getContentPane().add(ev,"Center");
-                //setDefaultCloseOperation(EXIT_ON_CLOSE);
+                
 		setVisible(true);
                 ev.pt.a.centerPoint.requestFocus();
         
@@ -94,22 +94,27 @@ public class Aframe extends JFrame{
                 atom = new Atom();
                 getContentPane().add(atom,"Center");
                 setVisible(true);
-                //atom.nucleus.get(0).requestFocus();
                 atom.centerPoint.requestFocus();
     }    
      
      
-     
+          public void startFC6000(){
+         
+                getContentPane().remove(startPanel);
+                forceCalc6000 = new ForceCalculator();
+                getContentPane().add(forceCalc6000,"Center");
+                setVisible(true);
+              
+    }  
      
      public void restart(){
          
                 getContentPane().remove(gamePanel);
-                //getContentPane().remove(bucket);
-               // bucket = new BucketPanel();
+              
                 gamePanel = new Apanel();
                
                 getContentPane().add(gamePanel, "Center");
-               // getContentPane().add(bucket, "West");
+           
                 setVisible(true);
                 gamePanel.helio.requestFocus();
         
