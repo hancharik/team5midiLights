@@ -39,7 +39,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     int helioSpeed = 10;
     int timerSpeed = space.Space.globalTimerSpeed;
-    int speedlimit = space.Space.globalSpeedlimit;// + helioSize;// douglas adams is max
+    int theGlobalSpeedLimit = space.Space.globalSpeedlimit;// + helioSize;// douglas adams is max
     int minSpeed = space.Space.globalMinSpeed;
     Sbutton helio;
     Sbutton ship;
@@ -134,7 +134,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     helioSpeed = 10;
     timerSpeed = space.Space.globalTimerSpeed;//  42 is good viewing (24 fps?)
-     speedlimit = space.Space.globalSpeedlimit;// + helioSize;
+     theGlobalSpeedLimit = space.Space.globalSpeedlimit;// + helioSize;
      minSpeed = space.Space.globalMinSpeed;
      
      screenWidth = (int)space.Space.width;
@@ -182,6 +182,11 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         add(helio);   
     }
   
+    
+    
+   //////////////////////////////////////////////////////////////////////////////////////
+    
+    
       public void addParticles(){
           
           amountOfEnemies = space.Space.globalAmountOfParticles;
@@ -214,8 +219,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         a.yVel = ysp;
         a.mass = space.Space.globalParticleMass;
         a.addActionListener(this);
-        a.speedLimit = (int)(Math.random() * speedlimit) + minSpeed;
-        a.setColor(speedlimit);
+        a.speedLimit = (int)(Math.random() * theGlobalSpeedLimit) + minSpeed;
+        a.setColor();
         a.setBorderPainted(false);
          particles.add(a);
         add(a);   
@@ -224,7 +229,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     }  // end add particles
  
       
-      
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
       
       
          public void actionPerformed(ActionEvent event){

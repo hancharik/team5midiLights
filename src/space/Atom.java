@@ -38,9 +38,12 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
     int particleSize = space.Space.globalParticleSize;
     int numberOfElectrons;
     int sizeOfNucleus; 
-   
+    int protonSize = 4;
+    int electronSize = 2;
     
     int enemySpeed = space.Space.globalEnemySpeed;
+    int nucleusSpeedLimit;
+    int nucleusSpeedLimitModifier = 18;
     
     int centerPointSpeed = 10;
     int timerSpeed = space.Space.globalTimerSpeed;
@@ -150,6 +153,8 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
         singularGravity = space.Space.globalSingularGravity;
           particleSize = space.Space.globalParticleSize;
    numberOfElectrons = space.Space.currentSelectedElectronNumber;
+     nucleusSpeedLimit = (numberOfElectrons/nucleusSpeedLimitModifier)+1;
+     
      sizeOfNucleus = 1;//numberOfElectrons;
      //int sizeOfNucleus = numberOfElectrons;
     
@@ -162,8 +167,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
      
      screenWidth = (int)space.Space.width;
     screenHeight = (int)space.Space.height;
-     
-     
+   
      
      
     }  // end set variables 
@@ -236,7 +240,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
           Sbutton a = new Sbutton();
          
         //electrons.get(i) = new Sbutton();
-        a.setBounds(Xcord, Ycord, particleSize, particleSize);
+        a.setBounds(Xcord, Ycord, electronSize, electronSize);
         a.setBackground(Color.red);
         a.xVel = xsp;
         a.yVel = ysp;
@@ -265,36 +269,38 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
          for(int i = 0; i < numberOfElectrons; i++){
              
              
-         Xcord = centerPoint.getX() - ((int)(Math.random() * 200) - 100);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
-         Ycord = centerPoint.getY() - ((int)(Math.random() * 200) - 100);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
+         Xcord = centerPoint.getX() - ((int)(Math.random() * 20) - 10);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
+         Ycord = centerPoint.getY() - ((int)(Math.random() * 20) - 10);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
          //int xsp = 30;
          //int ysp = -10;
          // this is our cast, we "throw" them to try to get an orbit
          int xsp = 0;
          int ysp = 0;
-         
-       
-         
+        
+         // you have to randomize the placement, or the protons seem to cover up the neutrons
+        int offsetX = (int)(Math.random() * 4) - 2;
+        int offsetY = (int)(Math.random() * 4) - 2; 
         Sbutton proton = new Sbutton();
-        proton.setBounds(Xcord, Ycord, 2, 2);
+        proton.setBounds(Xcord + offsetX, Ycord + offsetY, protonSize, protonSize);
         proton.setBackground(Color.BLUE);
         proton.xVel = xsp;
         proton.yVel = ysp;
         proton.mass = space.Space.globalParticleMass;
         proton.addActionListener(this);
-        proton.speedLimit = (numberOfElectrons/18)+1;
+        proton.speedLimit = nucleusSpeedLimit;
         proton.setBorderPainted(false);
         nucleus.add(proton);
         add(proton);   
-        
+        offsetX = (int)(Math.random() * 4) - 2;
+        offsetY = (int)(Math.random() * 4) - 2; 
         Sbutton neutron = new Sbutton();
-        neutron.setBounds(Xcord, Ycord, 2, 2);
+        neutron.setBounds(Xcord + offsetX, Ycord + offsetY, protonSize, protonSize);
         neutron.setBackground(Color.WHITE);
         neutron.xVel = xsp;
         neutron.yVel = ysp;
         neutron.mass = space.Space.globalParticleMass;
         neutron.addActionListener(this);
-        neutron.speedLimit = (numberOfElectrons/18)+1;
+        neutron.speedLimit = nucleusSpeedLimit;
         neutron.setBorderPainted(false);
         nucleus.add(neutron);
         add(neutron); 
@@ -327,35 +333,42 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                 
                  // THIS IS WHERE IS GETS FUNKY, we need to implement subshells at some point  https://en.wikipedia.org/wiki/Electron_shell 
                 int i = j;
+                
+                
+                
+                // this is a bad suborbital quick fix
                     if(i>58){
                     i = (int)(Math.random() * 38) + 19; 
                     }
-                   
+                
                     
-            if(i>-1){
-              shell = "K"; shellSpeed = speedLimitAsDouble * .11;
+                    
+        
+                    
+                    
+                    
+            if(i<2){
+              shell = "K"; shellSpeed = speedLimitAsDouble * .18;
             }        
                     
-            if(i>1){
-              shell = "L";shellSpeed = speedLimitAsDouble * .21;
-            }  if(i>10){
-              shell = "M"; shellSpeed = speedLimitAsDouble * .31; 
-            }  if(i>18){
-               shell = "N"; shellSpeed = speedLimitAsDouble * .41; 
-            }  if(i>26){
-               shell = "O"; shellSpeed = speedLimitAsDouble * .51;
-           } if(i>34){
-                shell = "P"; shellSpeed = speedLimitAsDouble * .71;
-            }  if(i>42){
+            else if(i<10){
+              shell = "L";shellSpeed = speedLimitAsDouble * .26;
+            }  else if(i<18){
+              shell = "M"; shellSpeed = speedLimitAsDouble * .36; 
+            }  else if(i<26){
+               shell = "N"; shellSpeed = speedLimitAsDouble * .46; 
+            }  else if(i<34){
+               shell = "O"; shellSpeed = speedLimitAsDouble * .65;
+           } else if(i<42){
+                shell = "P"; shellSpeed = speedLimitAsDouble * .77;
+            }  else {
                shell = "Q"; shellSpeed = speedLimitAsDouble * .91;
-            }  if(i>50){
-              
             }
           
    
            
             electrons.get(j).speedLimit = (int)shellSpeed;
-            electrons.get(j).setColor(speedlimit);
+            electrons.get(j).setColor();
         }   
         
    } // end set electron shells
@@ -560,62 +573,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
     }
  
     
-    
-    
-    /*
-     public void moveParticles(){
-       
-         
-         for(int i = 0; i < electrons.size(); i++){
-             
-             
-             
-             
-              for(int j = 0; j < electrons.size(); j++){
-      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-                    double totalGravity = 0.0;
-                    int moveX = 0;
-                    int moveY = 0;
-                                   
-                            if(i != j){ // don't calculate gravity on yourself
-                                    totalGravity  = calculateGravity(electrons.get(i).getX(),electrons.get(i).getY(), electrons.get(j).getX(),electrons.get(j).getY(), electrons.get(i).mass, electrons.get(j).mass);
-                                    moveX = (electrons.get(i).getX()+ (electrons.get(i).getWidth()/2)) - (electrons.get(j).getX()+ (electrons.get(j).getWidth()/2));
-                                    moveY = (electrons.get(i).getY()+ (electrons.get(i).getWidth()/2)) - (electrons.get(j).getY()+ (electrons.get(j).getWidth()/2));
-                                   
-                                   
-                                        
-                                    if (moveX > 0){
-                                       electrons.get(i).xVel = electrons.get(i).xVel - totalGravity;
-                                    }else if (moveX < 0){
-                                       electrons.get(i).xVel = electrons.get(i).xVel + totalGravity;
-                                    }else{
-                                      // if zero, do nothing    
-                                    }
-
-                                    if (moveY > 0){
-                                        electrons.get(i).yVel = electrons.get(i).yVel - totalGravity;
-                                   }else if (moveY < 0){
-                                       electrons.get(i).yVel = electrons.get(i).yVel + totalGravity;
-                                    }else{
-                                      // if zero, do nothing  
-                                    }
-
-                            }
-                        
-                 } // end for j loop
-             
-            electrons.get(i).move();
-            }  // end for i loop
-       
-   }   // end move electrons
-*/
-
-     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     
-     
-     
+   
      
      public void moveParticle(ArrayList <Sbutton> electrons){
        

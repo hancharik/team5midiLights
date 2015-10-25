@@ -19,7 +19,7 @@ public class Sbutton extends JButton{
     
     double xVel = 0.0;
     double yVel = 0.0;
-    int speedLimit;// = arena.Arena.screen.gamePanel.speedlimit;
+    int speedLimit;// = arena.Arena.screen.gamePanel.speedspeedit;
     double mass;// = space.Space.globalParticleMass;
     
     
@@ -74,7 +74,7 @@ public class Sbutton extends JButton{
      
      
      public void move(){
-     //speedLimit = arena.Arena.screen.gamePanel.speedlimit;
+     //speedLimit = arena.Arena.screen.gamePanel.speedspeedit;
          int negativeSpeedLimit = speedLimit - (speedLimit*2);
          
          if(xVel > speedLimit){
@@ -103,41 +103,60 @@ public class Sbutton extends JButton{
      
      
      ////////////////////////////////////////////////////////////////////////////////
+      /*
+     public void setColor(int speed){
+         
+         Color whatsMyColor = Color.MAGENTA;  
+         
+         if(speedLimit * 20 > speed  * 100){
+            whatsMyColor = Color.RED; 
+         }else if(speedLimit * 30 > speed  * 100){
+           whatsMyColor = Color.ORANGE;  
+         }else if(speedLimit * 40 > speed  * 100){
+           whatsMyColor = Color.YELLOW;  
+         }else if(speedLimit * 50 > speed * 100){
+            whatsMyColor = Color.GREEN; 
+         }else if(speedLimit * 70 > speed  * 100){
+            whatsMyColor = Color.BLUE; 
+         }else if(speedLimit * 80 > speed * 100){
+           whatsMyColor = Color.MAGENTA;  
+         }else{
+           whatsMyColor = Color.WHITE;   
+         }
+             
      
-     public void setColor(int lim){
+      this.setBackground(whatsMyColor);
+         
+     }
+      */
+    
+        public void setColor(){
          
          Color whatsMyColor = Color.red;
+         int sl = space.Space.globalSpeedlimit;
          
-         if(speedLimit * 100 > lim * 80){
+         if(speedLimit * 100 > sl * 80){
             whatsMyColor = Color.RED; 
-         }else if(speedLimit * 100 > lim * 70){
+         }else if(speedLimit * 100 > sl * 70){
            whatsMyColor = Color.ORANGE;  
-         }else if(speedLimit * 100 > lim * 50){
+         }else if(speedLimit * 100 > sl * 50){
            whatsMyColor = Color.YELLOW;  
-         }else if(speedLimit * 100 > lim * 40){
+         }else if(speedLimit * 100 > sl * 40){
             whatsMyColor = Color.GREEN; 
-         }else if(speedLimit * 100 > lim * 30){
+         }else if(speedLimit * 100 > sl * 30){
             whatsMyColor = Color.BLUE; 
-         }else if(speedLimit * 100 > lim * 20){
+         }else if(speedLimit * 100 > sl * 20){
            whatsMyColor = Color.MAGENTA;  
          }else{
            whatsMyColor = Color.BLACK;   
          }
              
-         
-         
-         
-         
-         
-         
-         
+     
       this.setBackground(whatsMyColor);
          
      }
-     
-     
-     
-     
+       
+    
      
      //////////////////////////////////////////////////////////////////////////////////////////////////
      
