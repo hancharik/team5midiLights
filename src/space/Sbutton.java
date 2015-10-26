@@ -19,8 +19,8 @@ public class Sbutton extends JButton{
     
     double xVel = 0.0;
     double yVel = 0.0;
-    int speedLimit;// = arena.Arena.screen.gamePanel.speedspeedit;
-    double mass;// = space.Space.globalParticleMass;
+    int speedLimit;// 
+    double mass = 1.0;// = space.Space.globalParticleMass;
     
     
     public Sbutton(){
@@ -103,32 +103,7 @@ public class Sbutton extends JButton{
      
      
      ////////////////////////////////////////////////////////////////////////////////
-      /*
-     public void setColor(int speed){
-         
-         Color whatsMyColor = Color.MAGENTA;  
-         
-         if(speedLimit * 20 > speed  * 100){
-            whatsMyColor = Color.RED; 
-         }else if(speedLimit * 30 > speed  * 100){
-           whatsMyColor = Color.ORANGE;  
-         }else if(speedLimit * 40 > speed  * 100){
-           whatsMyColor = Color.YELLOW;  
-         }else if(speedLimit * 50 > speed * 100){
-            whatsMyColor = Color.GREEN; 
-         }else if(speedLimit * 70 > speed  * 100){
-            whatsMyColor = Color.BLUE; 
-         }else if(speedLimit * 80 > speed * 100){
-           whatsMyColor = Color.MAGENTA;  
-         }else{
-           whatsMyColor = Color.WHITE;   
-         }
-             
-     
-      this.setBackground(whatsMyColor);
-         
-     }
-      */
+
     
         public void setColor(){
          
@@ -148,7 +123,7 @@ public class Sbutton extends JButton{
          }else if(speedLimit * 100 > sl * 20){
            whatsMyColor = Color.MAGENTA;  
          }else{
-           whatsMyColor = Color.BLACK;   
+           whatsMyColor = Color.WHITE;   
          }
              
      
@@ -162,29 +137,53 @@ public class Sbutton extends JButton{
      
      
      
+   public void applyForceOfGravity(Sbutton b){
+       
+       
+       double distance = Math.sqrt((b.getX()-this.getX())*(b.getX()-this.getX())+(b.getY()-this.getY())*(b.getY()-this.getY()));
+       double powerOfTen = 1.0;
+            for(int i = 0; i < Math.abs(space.Space.ugcPowerOfTen); i++){
+            powerOfTen = powerOfTen * 10; 
+         }
+         
+       if(space.Space.ugcPowerOfTen < 0){
+           powerOfTen = (1/powerOfTen);
+       }  
+       double uniGravConst = space.Space.universalGravitationConstant * powerOfTen;
+       double gravitationalAttraction = (uniGravConst * this.mass * b.mass) / (distance * distance);
+     
+     
+     double angle = (double) Math.toDegrees(Math.atan2((b.getY()-this.getY()), (b.getX()-this.getX())));
+
+    if(angle < 0.0){
+        angle += 360.0;
+    }
+     
+     
+     xVel = xVel +  ((double)(Math.cos(angle*Math.PI/180)) * gravitationalAttraction);
+     
+    yVel = yVel +  (double)(Math.sin(angle*Math.PI/180)) * gravitationalAttraction;
+       
+   
+    // this.setLocation(this.getX() - (int)xVel, this.getY() - (int)yVel);   
+       
+   } // end applyForceOfGravity 
      
      
      
      
-     
-     
-     
-     
-     
+ 
      
      
      
      
          public void checkCollision(){
        
-      // for(int i = 0; i < arena.Arena.screen.gamePanel.stuffBucketSize; i++){
-          // for(int j = 0; j < arena.Arena.level; j++){
-      // if (this.getBounds().intersects(arena.Arena.screen.gamePanel.stuffBucket.get(i).getBounds())){
-          // zombiebutton.Arena.screen.stuffBucket[i]  
-                 //   arena.Arena.screen.gamePanel.stuffBucket.get(i).setVisible(false);
-                  //  arena.Arena.screen.bucket.treasures[i].setVisible(true);
-                    //.remove(zombiebutton.Arena.screen.gamePanel.stuffBucket[i]); 
-       // }     
+      // for(int i = 0; i < something.size(); i++){
+        
+                    // if (this.getBounds().intersects(something.get(i).getBounds())){
+
+                     // }     
        
        
        //}
@@ -194,4 +193,4 @@ public class Sbutton extends JButton{
          }  // end check collision
   
        
-}
+}  // end

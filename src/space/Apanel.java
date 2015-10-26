@@ -544,6 +544,32 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 // first run gravity on x vector
                // amountOfForce = calculateSingleVectorGravity(particles.get(i).getX(), helio.getX(),  particles.get(i).mass, helio.mass);
                 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                if(space.Space.trigonometricMovement){
+                    
+                    
+                       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                   
+                                       particles.get(i).xVel = particles.get(i).xVel + calculateGravityForX(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY(), particles.get(i).mass, helio.mass);
+                                    
+                                       particles.get(i).yVel = particles.get(i).yVel + calculateGravityForY(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY(), particles.get(i).mass, helio.mass);
+                                 
+              ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+              
+                
+                }else{
+                    
+                    
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     if (moveX > 0){
                                        particles.get(i).xVel = particles.get(i).xVel - (amountOfForce + totalGravity);
                                     }else if (moveX < 0){
@@ -560,10 +586,20 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                                       // if zero, do nothing  
                                     }
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
+               
+                    }
+                
+                
+                
+                
+                
+                
+                
                 
                //  particles.get(0).setBackground(Color.WHITE);
                 particles.get(i).move();
-                particles.get(i).checkCollision();
+              
+                //particles.get(i).checkCollision();
             }
             
            
@@ -602,7 +638,41 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     } //end calculate gravity
      
      
-     
+        public double calculateGravityForX(int x, int y, int dx, int dy, double m1, double m2){
+        
+        double forceAmount = 1;
+        
+        
+        
+        double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+        
+        double uniGravConst = space.Space.universalGravitationConstant;
+        
+        double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
+        
+        forceAmount = getXForce(getAngleInDegrees(x,y,dx,dy), gravitationalAttraction); 
+        
+        return forceAmount; 
+       
+    } //end calculate gravity for x
+        
+       public double calculateGravityForY(int x, int y, int dx, int dy, double m1, double m2){
+        
+        double forceAmount = 1;
+        
+        
+        
+        double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+        
+        double uniGravConst = space.Space.universalGravitationConstant;
+        
+        double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
+        
+        forceAmount = getYForce(getAngleInDegrees(x,y,dx,dy), gravitationalAttraction);
+        
+        return forceAmount; 
+       
+    } //end calculate gravity for y
          
      
   
@@ -760,9 +830,50 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
       
       
       
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
       
-      
-      
+        
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+ 
+     
+     public void gravitationalAttration(){
+     
+      //  distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+       // uniGravConst = ugc * powerOfTen(powerOfTen);
+      //  gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
+        
+ } 
+   
+ 
+   //http://stackoverflow.com/questions/9970281/java-calculating-the-angle-between-two-points-in-degrees
+public  double getAngleInDegrees(double x, double y, double x2, double y2) {
+    double angle = (double) Math.toDegrees(Math.atan2(y2 - y, x2 - x));
+
+    if(angle < 0){
+        angle += 360;
+    }
+
+    return angle;
+}   
+   
+
+
+  // adapted from the example in the book "Beginning Java SE 6 Game Programming, third edition", by Jonathan S. Harbour 
+   
+ public double getXForce(double angleInDegrees, double force){
+     
+     return (double)(Math.cos(angleInDegrees*Math.PI/180)) * force;
+ }  
+   
+  public double getYForce(double angleInDegrees, double force){
+     
+     return (double)(Math.sin(angleInDegrees*Math.PI/180)) * force;
+ }   
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+    
       
       
       

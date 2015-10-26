@@ -29,7 +29,7 @@ public class Space {
     
     
     public static double universalGravitationConstant = 6.673;
-    public static double universalGravitationConstantMultiplier = .001;  //this is a double value in powers of ten
+    public static int ugcPowerOfTen = 1;  //this is an int value in powers of ten (-10 to 10 range?)
     
     
     public static double height = 1000;
@@ -44,6 +44,7 @@ public class Space {
    public static int gravityWellDistance = 200;
     public static double massOfCenter = 10.0;
    
+    public static boolean trigonometricMovement = true; 
     public static boolean globalSingularGravity = true; // when true, there is one point of gravity, when false, chained gravity
      public static boolean particles = false;  // when true, particles start everywhere
      public static boolean showStallman = false;

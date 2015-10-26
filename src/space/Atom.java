@@ -649,7 +649,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                  
                 // double  amountOfXForce = calculateSingleVectorGravity(electrons.get(i).getX(), centerPoint.getX(),  electrons.get(i).mass, centerPoint.mass);
                // double amountOfYForce = calculateSingleVectorGravity(electrons.get(i).getY(), centerPoint.getY(), electrons.get(i).mass, centerPoint.mass);
-                 
+                
                 if(!space.Space.gravityGetsStronger){
                 amountOfForce = 1;
                 }
@@ -675,10 +675,16 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                                       // if zero, do nothing  
                                     }
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
-                
+               
                //  electrons.get(0).setBackground(Color.WHITE);
+                 
+                  //electrons.get(i).xVel = electrons.get(i).xVel + getXForce(getAngleInDegrees(electrons.get(i).getX(),electrons.get(i).getY(), centerPoint.getX(), centerPoint.getY()), 1);
+                  //electrons.get(i).yVel = electrons.get(i).yVel + getXForce(getAngleInDegrees(electrons.get(i).getX(),electrons.get(i).getY(), centerPoint.getX(), centerPoint.getY()), 1);
+                 
+                 
+                 
                 electrons.get(i).move();
-                electrons.get(i).checkCollision();
+                //electrons.get(i).checkCollision();
             }
             
            
@@ -715,10 +721,7 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
        
     } //end calculate gravity
      
-     
-     
-         
-     
+
   
      // this is the stepped 'game gravity' that we need for the Stallman Halo. 
      //the mass sliders have been disconnected from these variables, you could make new sliders 
@@ -849,5 +852,70 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
     repaint();
   }
 
+      
+      
+      
+      
+            
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+ 
+     
+     public void gravitationalAttration(){
+     
+      //  distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+       // uniGravConst = ugc * powerOfTen(powerOfTen);
+      //  gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
+        
+ } 
+   
+ 
+   //http://stackoverflow.com/questions/9970281/java-calculating-the-angle-between-two-points-in-degrees
+public  double getAngleInDegrees(double x, double y, double x2, double y2) {
+    double angle = (double) Math.toDegrees(Math.atan2(y2 - y, x2 - x));
+
+    if(angle < 0){
+        angle += 360;
+    }
+
+    return angle;
+}   
+   
+
+
+  // adapted from the example in the book "Beginning Java SE 6 Game Programming, third edition", by Jonathan S. Harbour 
+   
+ public  double getXForce(double angleInDegrees, double force){
+     
+     return (double)(Math.cos(angleInDegrees*Math.PI/180)) * force;
+ }  
+   
+  public  double getYForce(double angleInDegrees, double force){
+     
+     return (double)(Math.sin(angleInDegrees*Math.PI/180)) * force;
+ }   
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
     
-}
+} // end

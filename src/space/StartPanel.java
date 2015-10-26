@@ -31,7 +31,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton stallmanHaloButton;
     
     
-    JButton shipHaloButton;
+    JButton rainbowCannonButton;
     JButton showElementsButton;
     JButton showrms;
     JButton startButton;
@@ -43,6 +43,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton littleScreenButton;
     JButton fullScreenButton;
     JButton linearMovementButton;
+    JButton trigonometricMovementButton;
     JButton centeredGravityButton;
     JButton fixedParticleButton;
     JButton relativeGravityButton;
@@ -92,10 +93,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        stallmanHaloButton.addActionListener(this);
        add(stallmanHaloButton); 
        
-       shipHaloButton = new JButton("Ship Halo");
-       shipHaloButton.setBounds(column(6), row(10), 180, 40);
-       shipHaloButton.addActionListener(this);
-       add(shipHaloButton);
+       rainbowCannonButton = new JButton("Rainbow Cannon");
+       rainbowCannonButton.setBounds(column(6), row(10), 180, 40);
+       rainbowCannonButton.addActionListener(this);
+       add(rainbowCannonButton);
        
        
        bigScreenButton = new JButton("Big Screen");
@@ -259,6 +260,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(quitButton);
        
        
+       trigonometricMovementButton = new JButton("trig movement = " + space.Space.trigonometricMovement);
+       trigonometricMovementButton.setBounds(column(6), row(13), 180, 40);
+       trigonometricMovementButton.addActionListener(this);
+       add(trigonometricMovementButton);
        
        linearMovementButton = new JButton("linear movement = " + space.Space.linearMovement);
        linearMovementButton.setBounds(column(6), row(12), 180, 40);
@@ -318,9 +323,9 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
        	if (obj == startAtomButton){
             
-          space.Space.globalSingularGravity = true;
+                space.Space.globalSingularGravity = true;
            
-          
+                space.Space.trigonometricMovement = false;
                 space.Space.thereIsAShip = false;
                 space.Space.globalParticleSize = 4;
                 space.Space.globalHelioSize = checkForStallman(32);
@@ -362,8 +367,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                             space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
                             space.Space.globalMinSpeed = 12;
            
-                   // space.Space.screen.elementViewerPanel();  
-                     space.Space.screen.startFC6000();
+                    space.Space.screen.elementViewerPanel();  
+                     //space.Space.screen.startFC6000();
 
                   }// end show elements button  
         
@@ -454,7 +459,7 @@ space.Space.globalParticleSizeMultiplier = 2;
         
         
         
-        if (obj == shipHaloButton){
+        if (obj == rainbowCannonButton){
             
             
                 space.Space.thereIsAShip = true;
@@ -673,6 +678,17 @@ space.Space.globalParticleSizeMultiplier = 2;
             } 
             
        	}
+          
+        if (obj == trigonometricMovementButton){
+            if(space.Space.trigonometricMovement){
+            space.Space.trigonometricMovement = false; 
+            trigonometricMovementButton.setText("trig movement = " + space.Space.trigonometricMovement);
+            }else{
+              space.Space.trigonometricMovement = true; 
+              trigonometricMovementButton.setText("trig movement = " + space.Space.trigonometricMovement);
+            }
+            
+       	}
         
         if (obj == linearMovementButton){
             if(space.Space.linearMovement){
@@ -684,6 +700,7 @@ space.Space.globalParticleSizeMultiplier = 2;
             }
             
        	}
+        
         
         if (obj == fixedParticleButton){
             if(space.Space.particles){
