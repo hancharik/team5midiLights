@@ -22,7 +22,9 @@ public class Space {
 
     
     
-    public static Aframe screen;// = new Aframe();
+    public static Aframe screen;
+    
+ 
     
     
     
