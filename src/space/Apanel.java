@@ -5,6 +5,8 @@
 package space;
 
 import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -14,11 +16,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 /**
@@ -26,6 +33,33 @@ import javax.swing.Timer;
  * @author Mark
  */
 public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
+    
+    
+    
+       
+    //@see http://stackoverflow.com/questions/7456227 
+        private static final String abstractActionString = "close";
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    private Action nameOfActionVariable = new AbstractAction(abstractActionString) {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                space.Space.f.dispatchEvent(new WindowEvent(
+                    space.Space.f, WindowEvent.WINDOW_CLOSING));
+            }
+        };
+    private JButton b = new JButton(nameOfActionVariable);
+
+        
+        
+       
+    
+    
+    
     
     
     
@@ -64,12 +98,68 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     double yVelocityDouble; 
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public Apanel(){
        
+        
+        
+        
+          
+       
+     
+    
+       
+       
+       
+       
+        
+        
+        
+        
+        
+        
+        
+        
        super();
        
        setLayout(null);
        setBackground(Color.black);
+       
+       
+       
+       
+       
+         // this.add(b);
+        
+        
+       // space.Space.f.getRootPane().setDefaultButton(b);
+        
+  
+    
+        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), abstractActionString);
+        
+     
+        
+        
+        this.getActionMap().put(abstractActionString, nameOfActionVariable);
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
        addMouseListener(this);
        setVariables();
         
@@ -650,7 +740,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
-        forceAmount = getXForce(getAngleInDegrees(x,y,dx,dy), gravitationalAttraction); 
+        forceAmount = (gravitationalAttraction * getXForce(getAngleInDegrees(x,y,dx,dy), gravitationalAttraction)); 
         
         return forceAmount; 
        
@@ -668,7 +758,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
-        forceAmount = getYForce(getAngleInDegrees(x,y,dx,dy), gravitationalAttraction);
+        forceAmount = (gravitationalAttraction * getYForce(getAngleInDegrees(x,y,dx,dy), gravitationalAttraction)); 
         
         return forceAmount; 
        
@@ -875,7 +965,25 @@ public  double getAngleInDegrees(double x, double y, double x2, double y2) {
    
     
       
+     ////////////////////////////////////////////////////////////////////////////////////////////////////////   
+/** @see http://stackoverflow.com/questions/7456227 */
+    public void display() {
+        GraphicsEnvironment env =
+            GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice dev = env.getDefaultScreenDevice();
+        space.Space.f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        space.Space.f.setBackground(Color.darkGray);
+        space.Space.f.setResizable(false);
+        space.Space.f.setUndecorated(true);
+        space.Space.f.add(this);
+        space.Space.f.pack();
+        dev.setFullScreenWindow(space.Space.f);
+    }  // end display
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
+        
+        
+            
       
       
       

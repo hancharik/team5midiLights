@@ -5,7 +5,9 @@
 package space;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
+import javax.swing.JFrame;
 
 /**
  *
@@ -44,7 +46,17 @@ public class Space {
    public static int gravityWellDistance = 200;
     public static double massOfCenter = 10.0;
    
-    public static boolean trigonometricMovement = true; 
+    
+    
+    
+    
+    public static boolean trigonometricMovement = false; // BY ALL THAT IS HOLY KEEP THIS OFF UNTIL WE FIND THE MATH ERROR!!!!!
+    
+    
+    
+    
+    
+    
     public static boolean globalSingularGravity = true; // when true, there is one point of gravity, when false, chained gravity
      public static boolean particles = false;  // when true, particles start everywhere
      public static boolean showStallman = false;
@@ -84,16 +96,45 @@ public class Space {
    
    
    
-   
+   public static JFrame f;
    
    
     public static void main(String[] args) {
       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        width = screenSize.getWidth();
-        height = screenSize.getHeight();
+      width = screenSize.getWidth();
+      height = screenSize.getHeight();
         screen = new Aframe(); 
+   
         
+        
+    }  // end main
+    
+    
+    
+    
+    public static void fullAframe(){
+        
+         
+        // @see http://stackoverflow.com/questions/7456227 
+     EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                f = new JFrame("FullScreenTest");
+                new Apanel().display();
+            }
+        });
+    
+      
+         
         
         
     }
-}
+    
+    
+    
+    
+    
+    
+    
+}  // end

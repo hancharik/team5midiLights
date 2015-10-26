@@ -674,12 +674,13 @@ public class Atom extends JPanel implements ActionListener, KeyListener, MouseLi
                                     }else{
                                       // if zero, do nothing  
                                     }
+                        
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
                
                //  electrons.get(0).setBackground(Color.WHITE);
                  
-                  //electrons.get(i).xVel = electrons.get(i).xVel + getXForce(getAngleInDegrees(electrons.get(i).getX(),electrons.get(i).getY(), centerPoint.getX(), centerPoint.getY()), 1);
-                  //electrons.get(i).yVel = electrons.get(i).yVel + getXForce(getAngleInDegrees(electrons.get(i).getX(),electrons.get(i).getY(), centerPoint.getX(), centerPoint.getY()), 1);
+                 // electrons.get(i).xVel = electrons.get(i).xVel + getXForce(getAngleInDegrees(electrons.get(i).getX(),electrons.get(i).getY(), centerPoint.getX(), centerPoint.getY()), 1);
+                  //electrons.get(i).yVel = electrons.get(i).yVel + getYForce(getAngleInDegrees(electrons.get(i).getX(),electrons.get(i).getY(), centerPoint.getX(), centerPoint.getY()), 1);
                  
                  
                  

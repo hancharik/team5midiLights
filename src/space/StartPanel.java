@@ -5,8 +5,14 @@
 package space;
 
 import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +20,7 @@ import javax.swing.JLabel;
 
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.KeyStroke;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -22,6 +29,36 @@ import javax.swing.event.ChangeListener;
  * @author Mark
  */
 public class StartPanel extends JPanel implements ActionListener, ChangeListener{
+    
+    
+    /*
+    //@see http://stackoverflow.com/questions/7456227 
+        private static final String abstractActionString = "close";
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    
+    private Action nameOfActionVariable = new AbstractAction(abstractActionString) {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                space.Space.f.dispatchEvent(new WindowEvent(
+                    space.Space.f, WindowEvent.WINDOW_CLOSING));
+            }
+        };
+    private JButton b = new JButton(nameOfActionVariable);
+
+        */
+        
+       
+    
+    
+    
+    
+    
+    
+    
 
     JButton startPlanetButton;
     JButton startAtomButton;
@@ -75,6 +112,44 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        super();
        setLayout(null);
        setBackground(Color.black);
+       
+       /*
+       
+        this.add(b);
+        
+        
+        space.Space.f.getRootPane().setDefaultButton(b);
+        
+  
+    
+        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), abstractActionString);
+        
+     
+        
+        
+        this.getActionMap().put(abstractActionString, nameOfActionVariable);
+    
+       */
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
        startPlanetButton = new JButton("Solar System");
        startPlanetButton.setBounds(column(6), row(6), 180, 40);
        startPlanetButton.addActionListener(this);
@@ -574,6 +649,7 @@ space.Space.globalParticleSizeMultiplier = 2;
            
            space.Space.screen.dispose();
             
+            
        	}
         
         
@@ -613,7 +689,7 @@ space.Space.globalParticleSizeMultiplier = 2;
         if (obj == startButton){
             
             space.Space.screen.start(); 
-            
+           // space.Space.fullAframe();  // WE LOSE KEYLISTENER WHEN WE CLICK ON ANYTHING, SO THIS IS OFF. BAD FUNCTION!
        	}
         
         
@@ -850,7 +926,22 @@ private int column(int c){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
      
-        
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////   
+/** @see http://stackoverflow.com/questions/7456227 */
+    public void display() {
+        GraphicsEnvironment env =
+            GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice dev = env.getDefaultScreenDevice();
+        space.Space.f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        space.Space.f.setBackground(Color.darkGray);
+        space.Space.f.setResizable(false);
+        space.Space.f.setUndecorated(true);
+        space.Space.f.add(this);
+        space.Space.f.pack();
+        dev.setFullScreenWindow(space.Space.f);
+    }  // end display
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
         
         
         
