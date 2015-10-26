@@ -76,6 +76,14 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton shipButton;
     JButton shipSelectorButton;
     
+    JButton teamMemberButton1;
+    JButton teamMemberButton2;
+    JButton teamMemberButton3;
+    JButton teamMemberButton4;
+    JButton teamMemberButton5;
+    JButton teamMemberButton6;
+    JButton teamMemberButton7;
+    
     JButton bigScreenButton;
     JButton littleScreenButton;
     JButton fullScreenButton;
@@ -322,15 +330,44 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        //shipButton.setIcon(new ImageIcon("images/ufo200x100.png"));
        add(shipButton);
        
-       
-       
+       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       // add team member buttons
+       teamMemberButton1 = new JButton("vacant");
+       teamMemberButton1.setBounds(column(7), row(5), 80, 40);
+       teamMemberButton1.addActionListener(this);
+       add(teamMemberButton1);
+       teamMemberButton2 = new JButton("vacant");
+       teamMemberButton2.setBounds(column(7), row(6), 80, 40);
+       teamMemberButton2.addActionListener(this);
+       add(teamMemberButton2);
+       teamMemberButton3 = new JButton("vacant");
+       teamMemberButton3.setBounds(column(7), row(7), 80, 40);
+       teamMemberButton3.addActionListener(this);
+       add(teamMemberButton3);
+       teamMemberButton4 = new JButton("vacant");
+       teamMemberButton4.setBounds(column(7), row(8), 80, 40);
+       teamMemberButton4.addActionListener(this);
+       add(teamMemberButton4);
+       teamMemberButton5 = new JButton("vacant");
+       teamMemberButton5.setBounds(column(7), row(9), 80, 40);
+       teamMemberButton5.addActionListener(this);
+       add(teamMemberButton5);
+       teamMemberButton6 = new JButton("vacant");
+       teamMemberButton6.setBounds(column(7), row(10), 80, 40);
+       teamMemberButton6.addActionListener(this);
+       add(teamMemberButton6);
+       teamMemberButton7 = new JButton("vacant");
+       teamMemberButton7.setBounds(column(7), row(11), 80, 40);
+       teamMemberButton7.addActionListener(this);
+       add(teamMemberButton7);
+       //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        startButton = new JButton("start");
-       startButton.setBounds(column(7), row(7), 80, 40);
+       startButton.setBounds(column(2), row(12), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(7), row(10), 80, 40);
+       quitButton.setBounds(column(1), row(12), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
@@ -689,8 +726,58 @@ space.Space.globalParticleSizeMultiplier = 2;
         if (obj == startButton){
             
             space.Space.screen.start(); 
-           // space.Space.fullAframe();  // WE LOSE KEYLISTENER WHEN WE CLICK ON ANYTHING, SO THIS IS OFF. BAD FUNCTION!
+           // space.Space.fullAframe();  // WE LOSE KEYLISTENER WHEN WE CLICK ON ANYTHING, SO THIS IS OFF. 
        	}
+        
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // team member buttons
+        
+        if (obj == teamMemberButton1){
+            
+            space.Space.screen.start1(); 
+           // space.Space.fullAframe();  
+       	}
+        if (obj == teamMemberButton2){
+            
+            space.Space.screen.start2(); 
+           // space.Space.fullAframe();  
+       	}
+        if (obj == teamMemberButton3){
+            
+            space.Space.screen.start3(); 
+           // space.Space.fullAframe();  
+       	}
+        if (obj == teamMemberButton4){
+            
+            space.Space.screen.start4(); 
+           // space.Space.fullAframe();  
+       	}
+        if (obj == teamMemberButton5){
+            
+            space.Space.screen.start5(); 
+           // space.Space.fullAframe();  
+       	}
+        if (obj == teamMemberButton6){
+            
+            space.Space.screen.start6(); 
+           // space.Space.fullAframe();  
+       	}
+        if (obj == teamMemberButton7){
+            
+            space.Space.screen.start7(); 
+           // space.Space.fullAframe();  
+       	}
+        
+        
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -723,7 +810,7 @@ space.Space.globalParticleSizeMultiplier = 2;
             
        	}
         
-        
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
         
         
         

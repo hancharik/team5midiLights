@@ -120,5 +120,73 @@ public class Aframe extends JFrame{
         
     }
  
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+  // team methods   
+       
+     public void start1(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+    public void start2(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+    public void start3(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+    public void start4(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+    public void start5(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+    public void start6(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+    public void start7(){
+         
+                getContentPane().remove(startPanel);
+                gamePanel = new Apanel();
+                getContentPane().add(gamePanel,"Center");
+                setVisible(true);
+                gamePanel.helio.requestFocus();
+        
+    }     
+     
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
 }  // end

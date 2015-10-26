@@ -32,7 +32,7 @@ import javax.swing.Timer;
  *
  * @author Mark
  */
-public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
+public class TeamPanel1 extends JPanel implements ActionListener, KeyListener, MouseListener {
     
     
     
@@ -110,7 +110,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     
     
-    public Apanel(){
+    public TeamPanel1(){
        
         
         
