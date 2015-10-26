@@ -717,7 +717,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
         
-        double uniGravConst = space.Space.universalGravitationConstant;
+        double uniGravConst = space.Space.universalGravitationalConstant;
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
@@ -736,7 +736,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
         
-        double uniGravConst = space.Space.universalGravitationConstant;
+        double uniGravConst = space.Space.universalGravitationalConstant;
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
@@ -754,7 +754,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
         
-        double uniGravConst = space.Space.universalGravitationConstant;
+        double uniGravConst = space.Space.universalGravitationalConstant;
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
@@ -822,7 +822,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         double forceAmount = 1;
         
         double distance = x-dx;
-        double uniGravConst = space.Space.universalGravitationConstant;
+        double uniGravConst = space.Space.universalGravitationalConstant;
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
