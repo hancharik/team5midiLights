@@ -149,7 +149,7 @@ public class Sbutton extends JButton{
        if(space.Space.ugcPowerOfTen < 0){
            powerOfTen = (1/powerOfTen);
        }  
-       double uniGravConst = space.Space.universalGravitationConstant * powerOfTen;
+       double uniGravConst = space.Space.universalGravitationalConstant * powerOfTen;
        double gravitationalAttraction = (uniGravConst * this.mass * b.mass) / (distance * distance);
      
      
