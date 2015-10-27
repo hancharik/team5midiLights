@@ -18,6 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Synthesizer;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -32,7 +35,7 @@ import javax.swing.Timer;
  *
  * @author Mark
  */
-public class TeamPanel1 extends JPanel implements ActionListener, KeyListener, MouseListener {
+public class TeamPanel1 extends JPanel implements ActionListener, KeyListener, MouseListener, Runnable {
     
     
     
@@ -223,7 +226,12 @@ public class TeamPanel1 extends JPanel implements ActionListener, KeyListener, M
        timer = new Timer( timerSpeed, this);
        timer.start();
        helio.requestFocus();
+       
        //requestFocus();
+       (new Thread(new TeamPanel1())).start();
+     
+       
+       
     }  // end constructor
  
     
@@ -1014,7 +1022,38 @@ public  double getAngleInDegrees(double x, double y, double x2, double y2) {
       
         
         
-            
+          public void makeParticleAppearWithSound(){
+
+        int note;
+        int pause;
+            try {
+        Synthesizer synthesizer = MidiSystem.getSynthesizer();
+        synthesizer.open();
+
+        MidiChannel[] channels = synthesizer.getChannels();
+
+        for(int i = 0; i < 4000; i++){
+         note = (int) (Math.random() * 80) + 1; 
+         pause = (int) (Math.random() * 1900) + 100; 
+        
+             
+        
+        channels[i%15].noteOn(note, 60);
+        Thread.sleep(pause);
+        channels[i%15].noteOff(60);
+        
+        }
+        synthesizer.close();
+    } catch (Exception e)
+    {
+        e.printStackTrace();
+    }
+    }          
+
+    @Override
+    public void run() {
+        makeParticleAppearWithSound();
+    }
       
       
       
