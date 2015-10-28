@@ -105,9 +105,14 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JSlider speedLimitMaxOfParticles;
     JSlider speedLimitMinOfParticles;
     JSlider massOfCenter;
+    
     JSlider massOfParticles;
     JSlider massOfShip;
+    JSlider gravitationalConstant;
+    JSlider powerOfTen;
     JLabel massOfShipLabel;
+    JLabel gravitationalConstantLabel;
+    JLabel powerOfTenLabel;
     JLabel massOfParticlesLabel;
     JLabel massOfCenterLabel;
     JLabel numOfParticles;
@@ -219,12 +224,28 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
         massOfShip = new JSlider(JSlider.HORIZONTAL, 1, 100, (int)space.Space.globalParticleMass);
         massOfShip.addChangeListener(this);
-        massOfShip.setMajorTickSpacing(100);
+        //massOfShip.setMajorTickSpacing(100);
         massOfShip.setPaintTicks(true);
-        massOfShip.setBounds(column(1), row(3), sliderWidth, 40);// horizontal
+        massOfShip.setBounds(column(1), row(11), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfShip);
         
+        
+        gravitationalConstant = new JSlider(JSlider.HORIZONTAL, 1, 10000, space.Space.universalGravitationalConstant);
+        gravitationalConstant.addChangeListener(this);
+        gravitationalConstant.setMajorTickSpacing(100);
+        gravitationalConstant.setPaintTicks(true);
+        gravitationalConstant.setBounds(column(1), row(3), sliderWidth, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(gravitationalConstant);
+        
+        powerOfTen = new JSlider(JSlider.HORIZONTAL, -10, 10, space.Space.ugcPowerOfTen);
+        powerOfTen.addChangeListener(this);
+        powerOfTen.setMajorTickSpacing(100);
+        powerOfTen.setPaintTicks(true);
+        powerOfTen.setBounds(column(1), row(12), sliderWidth, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(powerOfTen);
         
         numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 10000, space.Space.globalAmountOfParticles);
         numberOfParticles.addChangeListener(this);
@@ -278,6 +299,15 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         massOfShipLabel = new JLabel("<html><h2><font color='white'>mass of ship: </font><font color='red'>" + space.Space.globalShipMass + "</font><h2></html>");
         massOfShipLabel.setBounds(column(2), row(3), 220, 40);
         add(massOfShipLabel);
+        
+        gravitationalConstantLabel = new JLabel("<html><h2><font color='white'>Gravitational Constant: </font><font color='red'>" + space.Space.universalGravitationalConstant + "</font><h2></html>");
+        gravitationalConstantLabel.setBounds(column(2), row(11), 220, 40);
+        add(gravitationalConstantLabel);
+        
+        powerOfTenLabel = new JLabel("<html><h2><font color='white'>" + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
+        powerOfTenLabel.setBounds(column(2), row(12), 220, 40);
+        add(powerOfTenLabel);
+        
         
         numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
         numOfParticles.setBounds(column(2), row(6), 220, 40);
@@ -366,15 +396,24 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        teamMemberButton7.addActionListener(this);
        add(teamMemberButton7);
        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       
+       
+       
+       
+       
        startButton = new JButton("start");
-       startButton.setBounds(column(2), row(12), 80, 40);
+       startButton.setBounds(column(1), row(13), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(1), row(12), 80, 40);
+       quitButton.setBounds(column(2), row(13), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
+       
+       
+       
+       
        
        
        trigonometricMovementButton = new JButton("trig movement = " + space.Space.trigonometricMovement);
@@ -414,7 +453,11 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        if(!space.Space.gravityGetsStronger){
             massOfCenter.setVisible(false);
             massOfShip.setVisible(false);
+            gravitationalConstant.setVisible(false);
+            powerOfTen.setVisible(false);
             massOfShipLabel.setVisible(false);
+            gravitationalConstantLabel.setVisible(false);
+            powerOfTenLabel.setVisible(false);
             massOfParticles.setVisible(false);
             massOfCenterLabel.setVisible(false);
             massOfParticlesLabel.setVisible(false);
@@ -422,7 +465,9 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
                 if(!space.Space.thereIsAShip){
                 massOfShip.setVisible(false);
+                
                 massOfShipLabel.setVisible(false);
+                
                 }
        
     }  // end constructor
@@ -709,19 +754,28 @@ space.Space.globalParticleSizeMultiplier = 2;
            shipButton.setText("ship");
            if(space.Space.gravityGetsStronger){
            massOfShip.setVisible(true);
+           
             massOfShipLabel.setVisible(true);
+          
            }
            }else{
            space.Space.thereIsAShip = false;
            shipSelectorButton.setVisible(false);
            shipButton.setText("no ship");
            massOfShip.setVisible(false);
+           
             massOfShipLabel.setVisible(false);
+           
            }
             
        	}
         
         
+         
+         
+         
+         
+         
           if (obj == midiPlayerButton){
             
             space.Space.midiPlayer = new MidiFrame();
@@ -859,11 +913,18 @@ space.Space.globalParticleSizeMultiplier = 2;
             relativeGravityButton.setText("electron motion");
             massOfCenter.setVisible(false);
             massOfParticles.setVisible(false);
+            gravitationalConstant.setVisible(false);
+            powerOfTen.setVisible(false);
             massOfCenterLabel.setVisible(false);
             massOfParticlesLabel.setVisible(false);
+            gravitationalConstantLabel.setVisible(false);
+            powerOfTenLabel.setVisible(false);
+            
+            
             if(space.Space.thereIsAShip){
             massOfShip.setVisible(false);
             massOfShipLabel.setVisible(false);
+            
             }
             
             
@@ -874,9 +935,16 @@ space.Space.globalParticleSizeMultiplier = 2;
                 massOfParticles.setVisible(true);
                 massOfCenterLabel.setVisible(true);
                 massOfParticlesLabel.setVisible(true);
+                gravitationalConstant.setVisible(true);
+                powerOfTen.setVisible(true);
+                gravitationalConstant.setVisible(true);
+                gravitationalConstantLabel.setVisible(true);
+                powerOfTenLabel.setVisible(true);
+                
                 if(space.Space.thereIsAShip){
                 massOfShip.setVisible(true);
                 massOfShipLabel.setVisible(true);
+                
                 }
             }
             
@@ -928,6 +996,14 @@ public void checkrmsPic(){
                if (source == massOfShip) {
             space.Space.globalShipMass = source.getValue();
             massOfShipLabel.setText("<html><h2><font color='white'>mass of ship: </font><font color='red'>" + space.Space.globalShipMass + "</font><h2></html>");
+        }
+                      if (source == gravitationalConstant) {
+            space.Space.universalGravitationalConstant = source.getValue();
+            gravitationalConstantLabel.setText("<html><h2><font color='white'>Gravitational Constant: </font><font color='red'>" + space.Space.universalGravitationalConstant + "</font><h2></html>");
+        }
+                             if (source == powerOfTen) {
+            space.Space.ugcPowerOfTen = source.getValue();
+            powerOfTenLabel.setText("<html><h2><font color='white'>" + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
         }
         if (source == massOfCenter) {
             space.Space.massOfCenter = source.getValue();

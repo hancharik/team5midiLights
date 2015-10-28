@@ -32,7 +32,8 @@ public class Space {
     
     
     
-    public static double universalGravitationalConstant = 6.67408;
+    //public static double universalGravitationalConstant = 6.67408;
+    public static int universalGravitationalConstant = 6674;
     public static int ugcPowerOfTen = 1;  //this is an int value in powers of ten (-10 to 10 range?)
     
     
