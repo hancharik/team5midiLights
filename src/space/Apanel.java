@@ -300,13 +300,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
           amountOfEnemies = space.Space.globalAmountOfParticles;
          
          for(int i = 0; i < amountOfEnemies; i++){
-             Xcord = helio.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
-         Ycord = helio.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
+             Xcord = ((int)(Math.random() * space.Space.boxWidth) + space.Space.boxX);//  relative to sun  -->   helio.getX() - ((int)(Math.random() * space.Space.boxWidth) + space.Space.boxX);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
+         Ycord = ((int)(Math.random() * space.Space.boxHeight) + space.Space.boxY);//  relative to sun  -->   helio.getY() - ((int)(Math.random() * space.Space.boxHeight) + space.Space.boxY);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
          //int xsp = 30;
          //int ysp = -10;
          // this is our cast, we "throw" them to try to get an orbit
-         int xsp = 20;
-         int ysp = -1;
+         double xsp = space.Space.boxXvel;
+         double ysp = space.Space.boxYvel;
          
          
          if(space.Space.particles){

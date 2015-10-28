@@ -57,7 +57,19 @@ public class Space {
     
     
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // the six variables for the throw box go here
     
+    public static int boxX = 200;
+    public static int boxY = 200;
+    public static int boxWidth = 200;
+    public static int boxHeight = 200;
+    public static double boxXvel = 0.0;
+    public static double boxYvel = 0.0;
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     
     public static boolean globalSingularGravity = true; // when true, there is one point of gravity, when false, chained gravity

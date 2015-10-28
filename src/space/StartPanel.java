@@ -520,24 +520,28 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
         if (obj == startPlanetButton){
             
-          space.Space.globalSingularGravity = true;
-          space.Space.gravityGetsStronger = false;
-          space.Space.particles = false;
-                   
-              space.Space.globalParticleSize = 12;
-    space.Space.globalHelioSize = checkForStallman(20);
-space.Space.globalParticleSizeMultiplier = 2;
- space.Space.globalAmountOfParticles = (int)(Math.random() * 9) + 1;
-    
-    
-    space.Space.globalEnemySpeed = 1;
-    
-   space.Space.globalhelioSpeed = 10;
-  space.Space.globalTimerSpeed = 40;
-  space.Space.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
-   space.Space.globalMinSpeed = 6;
-   
-    space.Space.screen.start(); 
+            
+            space.Space.boxX = 540;
+            space.Space.boxY = 300;
+            space.Space.boxWidth = 200;
+            space.Space.boxHeight = 200;
+            space.Space.boxXvel = 15.0;
+            space.Space.boxYvel = -10.0;
+            space.Space.globalSingularGravity = true;
+            space.Space.gravityGetsStronger = false;
+            space.Space.particles = false;
+            space.Space.globalParticleSize = 12;
+            space.Space.globalHelioSize = checkForStallman(20);
+            space.Space.globalParticleSizeMultiplier = 2;
+            space.Space.globalAmountOfParticles = (int)(Math.random() * 9) + 1;
+            space.Space.globalEnemySpeed = 1;
+            space.Space.globalhelioSpeed = 10;
+            space.Space.globalTimerSpeed = 40;
+            space.Space.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
+            space.Space.globalMinSpeed = 6;
+            space.Space.screen.start(); 
+            
+            
        	}// end start planet button
    
         
@@ -623,22 +627,31 @@ space.Space.globalParticleSizeMultiplier = 2;
         if (obj == rainbowCannonButton){
             
             
-                space.Space.thereIsAShip = true;
+                space.Space.boxX = 0;
+                space.Space.boxY = 500;
+                space.Space.boxWidth = 200;
+                space.Space.boxHeight = 20;
+                space.Space.boxXvel = 35.0;
+                space.Space.boxYvel = 0.0;
+                space.Space.universalGravitationalConstant = 6674;
+                space.Space.ugcPowerOfTen = -6;
+                space.Space.globalParticleMass = 1.0;
+                space.Space.massOfCenter = 2.0;
+                space.Space.thereIsAShip = false;
                 space.Space.globalSingularGravity = true;
-                space.Space.particles = true;
-                space.Space.globalParticleSize = 4;
-                space.Space.showStallman = true;
+                space.Space.particles = false;
+                space.Space.globalParticleSize = 2;
+                space.Space.showStallman = false;
                 space.Space.globalAmountOfParticles = 6000;
-                space.Space.globalHelioSize= 10;
-                
+                space.Space.globalHelioSize= 4;
                 space.Space.globalParticleMass = 3;  // 3 - super important!
                 space.Space.globalEnemySpeed = 1;
                 space.Space.gravityWellDistance = 555;  
                 space.Space.globalhelioSpeed = 10;
-                space.Space.globalTimerSpeed = 1;
-                space.Space.globalSpeedlimit = 42;// douglas adams (42) is max
+                space.Space.globalTimerSpeed = 42;
+                space.Space.globalSpeedlimit = 60;// douglas adams (42) is max
                 space.Space.globalMinSpeed = 12;
-                space.Space.gravityGetsStronger = false;
+                space.Space.gravityGetsStronger = true;
                 space.Space.screen.start(); 
            
             
