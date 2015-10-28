@@ -11,6 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -196,7 +201,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        //add(fullScreenButton);
        
         
-        massOfCenter = new JSlider(JSlider.HORIZONTAL, 0, 1000, (int)space.Space.massOfCenter);
+        massOfCenter = new JSlider(JSlider.HORIZONTAL, 0, 100, (int)space.Space.massOfCenter);
         massOfCenter.addChangeListener(this);
         massOfCenter.setMajorTickSpacing(100);
         massOfCenter.setPaintTicks(true);
@@ -204,7 +209,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(massOfCenter);
         
-        massOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, (int)space.Space.globalParticleMass);
+        massOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, (int)space.Space.globalParticleMass);
         massOfParticles.addChangeListener(this);
         massOfParticles.setMajorTickSpacing(100);
         massOfParticles.setPaintTicks(true);
@@ -212,7 +217,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfParticles);
         
-        massOfShip = new JSlider(JSlider.HORIZONTAL, 1, 1000, (int)space.Space.globalParticleMass);
+        massOfShip = new JSlider(JSlider.HORIZONTAL, 1, 100, (int)space.Space.globalParticleMass);
         massOfShip.addChangeListener(this);
         massOfShip.setMajorTickSpacing(100);
         massOfShip.setPaintTicks(true);
@@ -221,7 +226,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         add(massOfShip);
         
         
-        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, space.Space.globalAmountOfParticles);
+        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 10000, space.Space.globalAmountOfParticles);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
@@ -238,7 +243,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         add(sizeOfParticles);
        
         
-        speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, space.Space.globalTimerSpeed);
+        speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, space.Space.globalTimerSpeed);
         speedOfParticles.addChangeListener(this);
         speedOfParticles.setMajorTickSpacing(100);
         speedOfParticles.setPaintTicks(true);
@@ -246,7 +251,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedOfParticles);
         
-        speedLimitMaxOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, space.Space.globalSpeedlimit);
+        speedLimitMaxOfParticles = new JSlider(JSlider.HORIZONTAL, space.Space.globalMinSpeed, 100, space.Space.globalSpeedlimit);
         speedLimitMaxOfParticles.addChangeListener(this);
         speedLimitMaxOfParticles.setMajorTickSpacing(100);
         speedLimitMaxOfParticles.setPaintTicks(true);
@@ -254,7 +259,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMaxOfParticles);
         
-        speedLimitMinOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 20, space.Space.globalMinSpeed);
+        speedLimitMinOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 40, space.Space.globalMinSpeed);
         speedLimitMinOfParticles.addChangeListener(this);
         speedLimitMinOfParticles.setMajorTickSpacing(100);
         speedLimitMinOfParticles.setPaintTicks(true);
@@ -302,10 +307,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        showrms.setBorderPainted(false);
        add(showrms); 
         
-       midiPlayerButton = new JButton("Show Elements");
+       midiPlayerButton = new JButton("MIDI Player");
        midiPlayerButton.setBounds(column(2), row(1), 200, 100);
        midiPlayerButton.addActionListener(this);
-       midiPlayerButton.setIcon(new ImageIcon("images/pTable200x100.png"));
+       midiPlayerButton.setIcon(new ImageIcon("images/midi.png"));
        midiPlayerButton.setBorderPainted(false);
        add(midiPlayerButton);       
        
@@ -516,7 +521,7 @@ space.Space.globalParticleSizeMultiplier = 2;
                 space.Space.thereIsAShip = false;
                 space.Space.globalSingularGravity = true;
                 space.Space.particles = true;
-                space.Space.globalParticleSize = 4;
+                space.Space.globalParticleSize = 2;
                 space.Space.showStallman = true;//.globalHelioSize = checkForStallman(18);
                 space.Space.globalAmountOfParticles = 6000;
                 //space.Space.gravityGetsStronger = true;
@@ -528,8 +533,27 @@ space.Space.globalParticleSizeMultiplier = 2;
                 space.Space.globalSpeedlimit = 42;// douglas adams (42) is max
                 space.Space.globalMinSpeed = 12;
                 space.Space.gravityGetsStronger = false;
-                space.Space.screen.start(); 
+                 
            
+                
+                //////////////////////////////////////////////
+                // new at 2:19 am 10/28/15 - sound! 
+                space.Space.midiPlayer = new MidiFrame();
+                space.Space.midiPlayer.songName = "LastDance.mid";
+                    try {
+                        space.Space.midiPlayer.playMidiSong();
+                        //////////////////////////////////////////////
+                    } catch (MidiUnavailableException ex) {
+                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InvalidMidiDataException ex) {
+                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                //space.Space.midiPlayer.setVisible(false);
+                    
+                 space.Space.screen.start();   
+                 // space.Space.screen.display();  <-- full screen attempt
             
        	} // end stallman halo
         

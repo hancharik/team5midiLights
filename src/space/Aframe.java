@@ -6,6 +6,8 @@ package space;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.JFrame;
 
@@ -172,4 +174,38 @@ public class Aframe extends JFrame{
      
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 
+    
+    
+    
+    
+    
+    
+    public void display() {
+        GraphicsEnvironment env =
+            GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice dev = env.getDefaultScreenDevice();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(Color.darkGray);
+        setResizable(false);
+        setUndecorated(true);
+        add(this);
+        pack();
+        dev.setFullScreenWindow(this);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }  // end
