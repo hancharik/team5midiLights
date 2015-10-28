@@ -226,7 +226,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         massOfShip.addChangeListener(this);
         //massOfShip.setMajorTickSpacing(100);
         massOfShip.setPaintTicks(true);
-        massOfShip.setBounds(column(1), row(11), sliderWidth, 40);// horizontal
+        massOfShip.setBounds(column(1), row(3), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfShip);
         
@@ -235,7 +235,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         gravitationalConstant.addChangeListener(this);
         gravitationalConstant.setMajorTickSpacing(100);
         gravitationalConstant.setPaintTicks(true);
-        gravitationalConstant.setBounds(column(1), row(3), sliderWidth, 40);// horizontal
+        gravitationalConstant.setBounds(column(1), row(11), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(gravitationalConstant);
         
@@ -301,10 +301,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         add(massOfShipLabel);
         
         gravitationalConstantLabel = new JLabel("<html><h2><font color='white'>Gravitational Constant: </font><font color='red'>" + space.Space.universalGravitationalConstant + "</font><h2></html>");
-        gravitationalConstantLabel.setBounds(column(2), row(11), 220, 40);
+        gravitationalConstantLabel.setBounds(column(2), row(11), 260, 40);
         add(gravitationalConstantLabel);
         
-        powerOfTenLabel = new JLabel("<html><h2><font color='white'>" + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
+        powerOfTenLabel = new JLabel("<html><h2><font color='white'>UGC: " + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
         powerOfTenLabel.setBounds(column(2), row(12), 220, 40);
         add(powerOfTenLabel);
         
@@ -367,7 +367,9 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        // add team member buttons
-       teamMemberButton1 = new JButton("vacant");
+       // just add your name to a button for your own panel
+       // these still need to be wired, not sure what needs to be done
+       teamMemberButton1 = new JButton("");
        teamMemberButton1.setBounds(column(7), row(5), 80, 40);
        teamMemberButton1.addActionListener(this);
        add(teamMemberButton1);
@@ -402,12 +404,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
        
        startButton = new JButton("start");
-       startButton.setBounds(column(1), row(13), 80, 40);
+       startButton.setBounds(column(2), row(13), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(2), row(13), 80, 40);
+       quitButton.setBounds(column(1), row(13), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
@@ -1000,10 +1002,12 @@ public void checkrmsPic(){
                       if (source == gravitationalConstant) {
             space.Space.universalGravitationalConstant = source.getValue();
             gravitationalConstantLabel.setText("<html><h2><font color='white'>Gravitational Constant: </font><font color='red'>" + space.Space.universalGravitationalConstant + "</font><h2></html>");
+            // do this so that the grav const values update in the power of ten label
+            powerOfTenLabel.setText("<html><h2><font color='white'>UGC: " + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
         }
                              if (source == powerOfTen) {
             space.Space.ugcPowerOfTen = source.getValue();
-            powerOfTenLabel.setText("<html><h2><font color='white'>" + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
+            powerOfTenLabel.setText("<html><h2><font color='white'>UGC: " + space.Space.universalGravitationalConstant + " x 10^</font><font color='red'>" + space.Space.ugcPowerOfTen + "</font><h2></html>");
         }
         if (source == massOfCenter) {
             space.Space.massOfCenter = source.getValue();

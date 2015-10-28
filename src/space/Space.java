@@ -83,7 +83,7 @@ public class Space {
     public static int globalShipWidth = 20;
     public static int globalShipSpeedLimit = 23;
   
-  public static int globalTimerSpeed = 1;
+  public static int globalTimerSpeed = 42;
   public static  int globalSpeedlimit = 12;// + heroSize;// douglas adams is max
    public static int globalMinSpeed = 2;
     
