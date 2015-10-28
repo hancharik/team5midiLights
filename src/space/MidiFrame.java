@@ -51,6 +51,7 @@ public class MidiFrame extends JFrame{
      ArrayList <JButton> notecards = new ArrayList();
         
     JPanel p = new JPanel();
+    JPanel notePanel = new JPanel();
     JLabel iLabel;
     JLabel jLabel;
     JLabel kLabel;
@@ -75,9 +76,9 @@ public class MidiFrame extends JFrame{
                 
                 //sequencer = null;
                 
-                 
-                
-                
+                 notePanel.setBounds(100, 300, 400, 400);
+                notePanel.setBackground(Color.red);
+                p.add(notePanel);
                  notecards = new ArrayList();
                 
                  p.setBackground(Color.black);
@@ -107,9 +108,9 @@ public class MidiFrame extends JFrame{
        
   public void addComponents(){
            
-        iLabel = new JLabel();
-        jLabel = new JLabel();
-        kLabel = new JLabel();
+        iLabel = new JLabel("<html><h2><font color='white'>instrument = </font><font color='yellow'>"  + "</font><h2></html>");
+        jLabel = new JLabel("<html><h2><font color='white'>instrument = </font><font color='yellow'>"  + "</font><h2></html>");
+        kLabel = new JLabel("<html><h2><font color='white'>instrument = </font><font color='yellow'>"  + "</font><h2></html>");
         iLabel.setBounds(20, 60, 300, 60);
         jLabel.setBounds(20, 140, 300, 60);
         kLabel.setBounds(20, 240, 300, 68);
@@ -139,6 +140,7 @@ public class MidiFrame extends JFrame{
              // showAvailableInstruments();
                 playRandomStuff();
                 //playMidiSong();
+                //playThroughTheNotes();
             }
 
             
@@ -217,14 +219,14 @@ public class MidiFrame extends JFrame{
         
          notecards = new ArrayList();
          p = new JPanel();
-        setSize (1200, 1000);
+        p.setSize (1200, 1000);
          p.setLayout(null);
          p.setBackground(Color.blue);
         JButton b = new JButton();
         notecards.add(b);
-       // b.setBounds(60, 60, 20, 20);
-       // b.setBackground(Color.green);
-       // p.add(b);
+        b.setBounds(60, 60, 20, 20);
+       b.setBackground(Color.green);
+       p.add(b);
         p.add(iLabel);
         p.add(jLabel);
         p.add(kLabel);
@@ -275,7 +277,65 @@ public void setColor(JButton buttonToColor, int level){
        
  public void playRandomStuff(){
      
-                int instrument;
+     //http://stackoverflow.com/questions/30718831/midi-midimessage-program-change-with-instrument-from-different-bank
+      
+   
+           int instrument;
+         int bank;       
+         int note;
+         int volume;
+         int pause;
+         int yAxis;
+             try {
+         Synthesizer synthesizer = MidiSystem.getSynthesizer();
+         synthesizer.open();
+ 
+         MidiChannel[] channels = synthesizer.getChannels();
+ 
+         for(int i = 0; i < 4000; i++){
+          note = (int) (Math.random() * 127) + 1; 
+          pause = 1;//(int) (Math.random() * 1900) +  100; 
+          volume = (int) (Math.random() * 60) +  20;
+        instrument = 384;//(int) (Math.random() * 124) + 1;
+        bank = 0;//(int) (Math.random() * 10) + 1;    
+         
+         channels[0].programChange(bank ,instrument );
+        channels[0].noteOn( note, volume);
+         JButton b = new JButton();
+         notecards.add(b);
+          notecards.get(i).setBounds( volume*13  + 40, 800-(note*9), 20, 20);
+          setColor(this.notecards.get(i), note);
+          
+           //notePanel.add(b);
+          //notePanel.repaint();
+            p.add(b);
+          p.repaint();
+           //f.pack();
+         Thread.sleep(pause);
+         channels[0].noteOff(note);
+         
+         }
+         synthesizer.close();
+     } catch (Exception e)
+     {
+         e.printStackTrace();
+     }
+        
+     
+     
+     
+     
+     
+     
+     
+     
+            
+    }  // end play random stuff
+  
+     
+  public void playThroughTheNotes(){
+     
+        int instrument;
         int bank;
         int note;
         int note1;
@@ -298,63 +358,76 @@ if (channel != null) {
     channel.noteOn(70, 100);
 }
         
+        here's how we use the values in the program. 
+        channels[0].programChange(BANK ,INSTRUMENT );
+        channels[0].noteOn( NOTE, VOLUME);
+        Thread.sleep(PAUSE); <-- the time between notes. right now note 1 stops, note 2 starts
         */
         
+        // this is a test then, that runs through the first bank
         
-        for(int j = 0; j < 1; j++){
-        for(int i = 0; i < 1; i++){
-        for(int k = 0; k < 7; k++){    
+        for(int j = 0; j < 10; j++){
+        for(int i = 0; i < 10; i=i+10){
+        for(int k = 0; k < 100; k++){    
          
-         note1 = (int) (Math.random() * 110) + 1; 
-         note =  (int) (Math.random() * 78 ) + 12; 
+         //note1 = (int) (Math.random() * 110) + 1; 
+       note =  (int) (Math.random() * 78 ) + 12; 
          
-         pause = 400;//(int) (Math.random() * 400) + 1; 
-         volume = (int) (Math.random() * 10) + 70;
+         pause = 1;//(int) (Math.random() * 400) + 1; 
+         volume = (int) (Math.random() * 50) + 30;
          instrument = 384;//(int) (Math.random() * 124) + 1;
-        bank = (int) (Math.random() * 10) + 1;   
+       // bank = (int) (Math.random() * 10) + 1;   
          
          
         
         
         
-        this.iLabel.setText("<html><h2><font color='white'>instrument = </font><font color='yellow'>" + instrument + "</font><h2></html>");
+        this.iLabel.setText("<html><h2><font color='white'>instrument = </font><font color='yellow'>" + i + "</font><h2></html>");
       // http://www.java2s.com/Tutorial/Java/0240__Swing/SetFontandforegroundcolorforaJLabel.htm
          this.iLabel.setFont(new Font("Courier New", Font.BOLD, 12));
-         this.jLabel.setText("<html><h2><font 'times new roman'color='white'>beat = </font><font color='blue'>"  + k + "</font><h2></html>");
+         this.jLabel.setText("<html><h2><font color='white'>pause = </font><font color='blue'>"  + pause + "</font><h2></html>");
          this.jLabel.setFont(new Font("Courier New", Font.BOLD, 22));
-        this.kLabel.setText("<html><h2><font color='white'>note = </font><font color='green'>"  +  note + "</font><h2></html>");
+        this.kLabel.setText("<html><h2><font color='white'>note = </font><font color='green'>"  +  k + "</font><h2></html>");
         this.kLabel.setFont(new Font("Courier New", Font.BOLD, 22));
         
-        
+        this.iLabel.setVisible(true);
+        this.jLabel.setVisible(true);
+        this.kLabel.setVisible(true);
         
         
         
         
         //if(k%2==0){
-        channels[0].programChange(bank ,instrument );
-        channels[0].noteOn( note, volume);
+       // channels[0].programChange(0 ,i );
+      //  channels[0].noteOn( note, volume);
       //  }
         JButton b = new JButton();
         b.setBorderPainted(false);
         b.setOpaque(true);
         this.notecards.add(b);
-         this.notecards.get(i).setBounds( volume*11, 900-(note*9), 20, 20);
-         this.setColor(this.notecards.get(i), note);
-         this.p.add(b);
-         channels[1].programChange(bank ,instrument);
-        channels[1].noteOn( note - 11, volume);
-         
+        this.notecards.get(i).setBounds( volume*7, 600-(note*4), 20, 20);
+        this.setColor(this.notecards.get(i), note);
+        this.p.add(b);
+         //second note
+         //channels[1].programChange(bank ,instrument);
+        //channels[1].noteOn( note - 11, volume);
+     
           JButton bz = new JButton();
         bz.setBorderPainted(false);
         bz.setOpaque(true);
         this.notecards.add(bz);
-         this.notecards.get(i+1).setBounds( volume*10, 900-(note1*8), 20, 20);
-         this.setColor(this.notecards.get(i+1), note1);
+         this.notecards.get(i+1).setBounds( volume*10, 900-(note*8), 20, 20);
+         this.setColor(this.notecards.get(i+1), note);
          this.p.add(bz);
           this.p.repaint();
+         
           //this.pack();
+          this.repaint();
+        this.p.repaint();
+        //channels[0].programChange(0 ,i );
+       // channels[0].noteOn( note, volume);
         Thread.sleep(pause);
-        channels[0].noteOff(note);
+       // channels[0].noteOff(note);
         //channels[1].noteOff(note1);
         }
         }
@@ -386,7 +459,9 @@ if (channel != null) {
           this.p.add(b);
           this.p.repaint();
           //this.pack();
+        
         Thread.sleep(pause);
+        
         channels[0].noteOff(note);
         
         }
@@ -400,7 +475,13 @@ if (channel != null) {
     }
     }
   
-     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
      
        public void showAvailableInstruments() {
            try{
