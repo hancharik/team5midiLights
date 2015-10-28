@@ -69,7 +69,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     
     
     JButton rainbowCannonButton;
-    JButton showElementsButton;
+    JButton midiPlayerButton;
     JButton showrms;
     JButton startButton;
     JButton quitButton;
@@ -92,7 +92,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton centeredGravityButton;
     JButton fixedParticleButton;
     JButton relativeGravityButton;
-    JButton showAtomPanelButton;
+    
     
     JSlider numberOfParticles;
     JSlider sizeOfParticles;
@@ -302,12 +302,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        showrms.setBorderPainted(false);
        add(showrms); 
         
-       showElementsButton = new JButton("Show Elements");
-       showElementsButton.setBounds(column(2), row(1), 200, 100);
-       showElementsButton.addActionListener(this);
-       showElementsButton.setIcon(new ImageIcon("images/pTable200x100.png"));
-       showElementsButton.setBorderPainted(false);
-       add(showElementsButton);       
+       midiPlayerButton = new JButton("Show Elements");
+       midiPlayerButton.setBounds(column(2), row(1), 200, 100);
+       midiPlayerButton.addActionListener(this);
+       midiPlayerButton.setIcon(new ImageIcon("images/pTable200x100.png"));
+       midiPlayerButton.setBorderPainted(false);
+       add(midiPlayerButton);       
        
        shipSelectorButton = new JButton("Select Ship");
        shipSelectorButton.setBounds(column(4), row(1), 200, 100);
@@ -393,10 +393,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(fixedParticleButton);
        
        
-       showAtomPanelButton = new JButton("show element # " + space.Space.currentSelectedElectronNumber);
-       showAtomPanelButton.setBounds(column(6), row(5), 180, 40);
-       showAtomPanelButton.addActionListener(this);
-       add(showAtomPanelButton);
+    
        
        relativeGravityButton = new JButton();
        if(space.Space.gravityGetsStronger== false){
@@ -463,26 +460,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
         
         
-             	if (obj == showElementsButton){
-            
-                            space.Space.showCards = false;
-                            space.Space.globalParticleSize = 4;
-                            space.Space.globalHelioSize = checkForStallman(32);
-                            space.Space.globalParticleSizeMultiplier = 8;
-                            space.Space.globalAmountOfParticles = 6000;
-                            space.Space.globalSingularGravity = true;
-                            space.Space.particles = true;
-                            space.Space.globalEnemySpeed = 1;
-                            space.Space.gravityGetsStronger = false;
-                            space.Space.globalhelioSpeed = 10;
-                            space.Space.globalTimerSpeed = 1;
-                            space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
-                            space.Space.globalMinSpeed = 12;
-           
-                    space.Space.screen.elementViewerPanel();  
-                     //space.Space.screen.startFC6000();
-
-                  }// end show elements button  
+             	
         
         
         
@@ -720,13 +698,17 @@ space.Space.globalParticleSizeMultiplier = 2;
        	}
         
         
+          if (obj == midiPlayerButton){
+            
+            space.Space.midiPlayer = new MidiFrame();
+       	}
         
          
         
         if (obj == startButton){
             
             space.Space.screen.start(); 
-           // space.Space.fullAframe();  // WE LOSE KEYLISTENER WHEN WE CLICK ON ANYTHING, SO THIS IS OFF. 
+           // space.Space.fullAframe();  // this is off, because the keylistener disappears somewhere 
        	}
         
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -782,36 +764,7 @@ space.Space.globalParticleSizeMultiplier = 2;
         
         
         
-        
-        
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
-        //this is how we make an atom for the periodic table
-        
-        if (obj == showAtomPanelButton){
-            
-                space.Space.globalParticleSize = 4;
-                space.Space.globalHelioSize = checkForStallman(32);
-                space.Space.globalParticleSizeMultiplier = 8;
-                space.Space.globalAmountOfParticles = 6000;
-                space.Space.globalSingularGravity = true;
-                space.Space.particles = true;
-                space.Space.globalEnemySpeed = 1;
-                space.Space.gravityGetsStronger = false;
-                space.Space.globalhelioSpeed = 10;
-                //space.Space.globalTimerSpeed = 1;
-                space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
-                space.Space.globalMinSpeed = 12;
-            
-            
-            space.Space.screen.startAtom(); 
-            
-       	}
-        
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
-        
+  
         
         
         

@@ -24,7 +24,7 @@ public class Space {
     
     public static Aframe screen;
     
- 
+    public static MidiFrame midiPlayer;
     
     
     

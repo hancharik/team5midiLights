@@ -24,13 +24,12 @@ public class Aframe extends JFrame{
    
     Apanel gamePanel;// = new Apanel();
     
-    Atom atom;// = new Apanel();
+    
    
     StartPanel startPanel;// = new StartPanel();
     
-    ElementViewer ev; //= new ElementViewer();
+   
     
-    ForceCalculator forceCalc6000;// = new ForceCalculator();
     
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,19 +73,7 @@ public class Aframe extends JFrame{
         
     }
     
-    
-        public void elementViewerPanel(){
-        
-        getContentPane().removeAll();
-       
-                ev = new ElementViewer();
-                
-		getContentPane().add(ev,"Center");
-                
-		setVisible(true);
-                ev.pt.a.centerPoint.requestFocus();
-        
-    }
+
     
     
     
@@ -100,25 +87,8 @@ public class Aframe extends JFrame{
         
     }   
      
-     
-       public void startAtom(){
-         
-                getContentPane().remove(startPanel);
-                atom = new Atom();
-                getContentPane().add(atom,"Center");
-                setVisible(true);
-                atom.centerPoint.requestFocus();
-    }    
-     
-     
-          public void startFC6000(){
-         
-                getContentPane().remove(startPanel);
-                forceCalc6000 = new ForceCalculator();
-                getContentPane().add(forceCalc6000,"Center");
-                setVisible(true);
-              
-    }  
+
+
      
      public void restart(){
          
