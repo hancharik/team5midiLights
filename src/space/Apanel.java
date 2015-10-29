@@ -73,13 +73,16 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     JLabel xPositionLabel;
     JLabel yPositionLabel;
     JLabel massLabel;
+    JButton setParticleVariablesButton;
+    
     
     double xVelocityDouble;
     double yVelocityDouble; 
     
-
+    int panelTimerCounter;
     
-    
+    boolean particleSelected = false;
+    Sbutton selectedParticle;
     
     public Apanel(){
    
@@ -126,17 +129,22 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         xPositionLabel = new JLabel("X Position = (" + xVelocityDouble + "," + yVelocityDouble + ")");
         yPositionLabel = new JLabel("Y Position = (" + xVelocityDouble + "," + yVelocityDouble + ")");
         xPositionLabel.setBounds(20, 130, 200, 40);
-        yPositionLabel.setBounds(20, 70, 200, 40);
+        yPositionLabel.setBounds(20, 180, 200, 40);
         xPositionLabel.setVisible(false);
         yPositionLabel.setVisible(false);
         add(xPositionLabel);
-        //add(yPositionLabel);
+        add(yPositionLabel);
         
-        massLabel = new JLabel("X Velocity = " + xVelocityDouble);
-        massLabel.setBounds(20, 180, 200, 40);
+        massLabel = new JLabel("Mass = " + xVelocityDouble);
+        massLabel.setBounds(20, 230, 200, 40);
         massLabel.setVisible(false);
         add(massLabel);
         
+        setParticleVariablesButton = new JButton("particle selected = " + particleSelected);
+        setParticleVariablesButton.setBounds(20, 280, 200, 40);
+        setParticleVariablesButton.addActionListener(this);
+        setParticleVariablesButton.setVisible(false);
+        add(setParticleVariablesButton);
        /// makeCardPanel();
        // infoCard.setVisible(false);
        // add(infoCard);
@@ -148,13 +156,27 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
       // if we have this, do we need the stuff at the bottom?
       addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-                                    if(space.Space.thereIsAShip){
-                                        ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight);   
-                                        ship.xVel = 0.0;
-                                        ship.yVel = 0.0;
-                                           }else{
-                                        helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
-                                            }
+                                    
+                            
+                            
+                             if(space.Space.thereIsAShip){
+            ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight); 
+            ship.requestFocus();
+        }else if(particleSelected){
+            selectedParticle.setBounds(e.getX(), e.getY(), playerSize, playerSize); 
+            helio.requestFocus();
+        }else{
+            helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+            space.Space.centerX = e.getX();
+            space.Space.centerY = e.getY();
+            helio.requestFocus();
+        }
+                            
+                            
+                            
+                            
+                            
+                            
                                     }
                                 });
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
@@ -172,21 +194,20 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
    
     public void setVariables(){
         
+        
+        panelTimerCounter = 0;
         singularGravity = space.Space.globalSingularGravity;
-          playerSize = space.Space.globalParticleSize;
-   amountOfEnemies= space.Space.globalAmountOfParticles;
-     helioSize = space.Space.globalHelioSize;
+        playerSize = space.Space.globalParticleSize;
+        amountOfEnemies = space.Space.globalAmountOfParticles;
+        helioSize = space.Space.globalHelioSize;
      //int helioSize = amountOfEnemies;
-    
-     enemySpeed = space.Space.globalEnemySpeed;
-    
-    helioSpeed = 10;
-    timerSpeed = space.Space.globalTimerSpeed;//  42 is good viewing (24 fps?)
-     theGlobalSpeedLimit = space.Space.globalSpeedlimit;// + helioSize;
-     minSpeed = space.Space.globalMinSpeed;
-     
-     screenWidth = (int)space.Space.width;
-    screenHeight = (int)space.Space.height;
+        enemySpeed = space.Space.globalEnemySpeed;
+        helioSpeed = 10;
+        timerSpeed = space.Space.globalTimerSpeed;//  42 is good viewing (24 fps?)
+        theGlobalSpeedLimit = space.Space.globalSpeedlimit;// + helioSize;
+        minSpeed = space.Space.globalMinSpeed;
+        screenWidth = (int) space.Space.width;
+        screenHeight = (int) space.Space.height;
      
      
      
@@ -286,63 +307,73 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
       
       
-         public void actionPerformed(ActionEvent event){
+    public void actionPerformed(ActionEvent event) {
 
-       	Object obj = event.getSource();
-       
-    
-        
-        
-                if (obj == timer){
+        Object obj = event.getSource();
 
+        if (obj == timer) {
 
-                    moveParticle();
+            moveParticle();
 
+        } else if (obj == helio) {
 
-                }else if (obj == helio){
-                    
-                    closeApanel();
-                  
-                }else{
-        
-        
-        	for(int k = 0; k < particles.size(); k++){
-                    
-                
-                
-                            if (obj == particles.get(k)){
-                                
-                                
-                                //xVelocityDouble = particles.get(k).xVel;
-                                //yVelocityDouble = particles.get(k).yVel;
-                                xVelocityLabel.setText("<html><h2><font color='white'>X Velocity = </font><font color='red'>" + particles.get(k).xVel + "</font><h2></html>");
-                                yVelocityLabel.setText("<html><h2><font color='white'>Y Velocity = </font><font color='red'>" + particles.get(k).yVel + "</font><h2></html>");
+            closeApanel();
+
+        } else if (obj == setParticleVariablesButton) {
+
+            setParticleVariablesButton.setText("particle selected = " + particleSelected);//
+            particleSelected = true;
+            helio.requestFocus();
+            // setParticleVariables();
+
+        } else {
+
+            for (int k = 0; k < particles.size(); k++) {
+
+                if (obj == particles.get(k)) {
+
+                    particleButtonPress(k);
+
+                }  // enf if obj == elements.get(k)
+
+            }
+
+        }
+
+    } // end action performed
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////         
+         
+ public void particleButtonPress(int thisButton){
+     
+                                particleSelected = true;
+                                selectedParticle = particles.get(thisButton);
+                                xVelocityLabel.setText("<html><h2><font color='white'>X Velocity = </font><font color='red'>" + particles.get(thisButton).xVel + "</font><h2></html>");
+                                yVelocityLabel.setText("<html><h2><font color='white'>Y Velocity = </font><font color='red'>" + particles.get(thisButton).yVel + "</font><h2></html>");
                                 xVelocityLabel.setVisible(true);
                                 yVelocityLabel.setVisible(true);
-                                xPositionLabel.setText("<html><h2><font color='white'>Position = </font><font color='red'>" + "(" + particles.get(k).getX() + "," + particles.get(k).getY() + ")" + "</font><h2></html>");
-                                yPositionLabel.setText("<html><h2><font color='white'>Y Position = </font><font color='red'>" + particles.get(k).getX() + "</font><h2></html>");
+                                xPositionLabel.setText("<html><h2><font color='white'>Position = </font><font color='red'>" + "(" + particles.get(thisButton).getX() + "," + particles.get(thisButton).getY() + ")" + "</font><h2></html>");
+                                yPositionLabel.setText("<html><h2><font color='white'>Relative = </font><font color='red'>" + "(" + getRelativePosition(particles.get(thisButton).getX(),helio.getX()) + "," + getRelativePosition(particles.get(thisButton).getY(),helio.getY()) + ")" + "</font><h2></html>");
                                 xPositionLabel.setVisible(true);
-                               // yPositionLabel.setVisible(true);
-                                massLabel.setText("<html><h2><font color='white'>Mass = </font><font color='red'>" + particles.get(k).mass + "</font><h2></html>");
+                                yPositionLabel.setVisible(true);
+                                massLabel.setText("<html><h2><font color='white'>Mass = </font><font color='red'>" + particles.get(thisButton).mass + "</font><h2></html>");
                                 massLabel.setVisible(true);
+                                setParticleVariablesButton.setVisible(true);
                                 helio.requestFocus();  //   <-- because helio has the key listener
                                            
-                               // space.Space.screen.elementViewerPanel();  
-  
-                            }  // enf if obj == elements.get(k)
-  
-                }
-  
-        }
-    
-    } // end action performed
+                               
+     
+ } // end particle button press       
          
+  public int getRelativePosition(int a, int b){
+      
+     int relativePosition = a-b; 
+      
+      
+      
+      return relativePosition;
+  }   // end get relative position    
          
-         
-         
-         
-         
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override  // I DON'T THINK WE NEED THIS ONE, I DON'T THINK IT WORKS
     public void keyTyped(KeyEvent e) {
         int k = e.getKeyCode();
@@ -399,12 +430,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		}
                     
                      if(k == e.VK_O){
+                    particleSelected = false;
                     xVelocityLabel.setVisible(false);
                     yVelocityLabel.setVisible(false);  
                     xPositionLabel.setVisible(false);
                     yPositionLabel.setVisible(false);
                     massLabel.setVisible(false);
-                    
+                    setParticleVariablesButton.setVisible(false);
                     timer.start();
 		}
                 
@@ -480,11 +512,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		}
                     
                      if(k == e.VK_O){
+                    particleSelected = false;
                     xVelocityLabel.setVisible(false);
                     yVelocityLabel.setVisible(false);  
                     xPositionLabel.setVisible(false);
                     yPositionLabel.setVisible(false);
-                    massLabel.setVisible(false);   
+                    massLabel.setVisible(false); 
+                    setParticleVariablesButton.setVisible(false);
                     timer.start();
 		}
                      
@@ -818,36 +852,61 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseClicked(MouseEvent e) {
+          /*
         if(space.Space.thereIsAShip){
-     ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight);      
+            ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight); 
+            ship.requestFocus();
+        }else if(particleSelected){
+            selectedParticle.setBounds(e.getX(), e.getY(), playerSize, playerSize); 
+            helio.requestFocus();
         }else{
-     helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+            helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+            space.Space.centerX = e.getX();
+            space.Space.centerY = e.getY();
+            helio.requestFocus();
         }
-    // helio.setBackground(Color.red);
+         //helio.setBackground(Color.red);
+        */
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+          /* 
         if(space.Space.thereIsAShip){
-     ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight);    
+            ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight); 
+            ship.requestFocus();
+        }else if(particleSelected){
+            selectedParticle.setBounds(e.getX(), e.getY(), playerSize, playerSize); 
+            helio.requestFocus();
         }else{
-         helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
-         space.Space.centerX = e.getX();
-         space.Space.centerY = e.getY();
+            helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+            space.Space.centerX = e.getX();
+            space.Space.centerY = e.getY();
+            helio.requestFocus();
         }
-        //  helio.setBackground(Color.red);
+      
+        */
+        //helio.setBackground(Color.red);  //<-- test to see which one of these was working, it's mouse pressed and mouse released, 
+                                        //   so i went with just pressed, because clicked never turned the button red, i don't understand why, so it makes me nervous.
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        /*
         if(space.Space.thereIsAShip){
-     ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight);
+            ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight); 
+            ship.requestFocus();
+        }else if(particleSelected){
+            selectedParticle.setBounds(e.getX(), e.getY(), playerSize, playerSize); 
+            helio.requestFocus();
         }else{
-         helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
-         space.Space.centerX = e.getX();
-         space.Space.centerY = e.getY();
+            helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+            space.Space.centerX = e.getX();
+            space.Space.centerY = e.getY();
+            helio.requestFocus();
         }
-        // helio.setBackground(Color.red);
+         //helio.setBackground(Color.red);
+        */
     }
 
     @Override
