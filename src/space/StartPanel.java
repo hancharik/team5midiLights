@@ -369,7 +369,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        // add team member buttons
        // just add your name to a button for your own panel
        // these still need to be wired, not sure what needs to be done
-       teamMemberButton1 = new JButton("");
+       teamMemberButton1 = new JButton("Mark");
        teamMemberButton1.setBounds(column(7), row(5), 80, 40);
        teamMemberButton1.addActionListener(this);
        add(teamMemberButton1);
