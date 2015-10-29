@@ -78,7 +78,7 @@ public class MidiFrame extends JFrame{
                 
                  notePanel.setBounds(100, 300, 400, 400);
                 notePanel.setBackground(Color.red);
-                p.add(notePanel);
+               // p.add(notePanel);
                  notecards = new ArrayList();
                 
                  p.setBackground(Color.black);
