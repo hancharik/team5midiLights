@@ -17,7 +17,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -34,35 +39,7 @@ import javax.swing.Timer;
  */
 public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
     
-    
-    
-       
-    //@see http://stackoverflow.com/questions/7456227 
-        private static final String abstractActionString = "close";
-    ///////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////
-    
-    
-    
-    private Action nameOfActionVariable = new AbstractAction(abstractActionString) {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                space.Space.f.dispatchEvent(new WindowEvent(
-                    space.Space.f, WindowEvent.WINDOW_CLOSING));
-            }
-        };
-    private JButton b = new JButton(nameOfActionVariable);
-
-        
-        
-       
-    
-    
-    
-    
-    
-    
     
     int playerSize = space.Space.globalParticleSize;
     int amountOfEnemies;// = space.Space.globalAmountOfEnemies;
@@ -100,71 +77,34 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     double xVelocityDouble;
     double yVelocityDouble; 
     
-    
-    
-    
-    
-    
-    
-    
+
     
     
     
     public Apanel(){
-       
-        
-        
-        
-          
-       
-     
-    
-       
-       
-       
-       
-        
-        
-        
-        
-        
-        
-        
-        
+   
        super();
        
-       setLayout(null);
-       setBackground(Color.black);
+       initializeComponents();
+       playSong(space.Space.globalSongName);
        
        
-       
-       
-       
-         // this.add(b);
-        
-        
-       // space.Space.f.getRootPane().setDefaultButton(b);
-        
-  
+    }  // end constructor
+ 
     
-        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), abstractActionString);
-        
-     
-        
-        
-        this.getActionMap().put(abstractActionString, nameOfActionVariable);
+    
+    
+    
+    
+   public void initializeComponents(){
        
        
+            setLayout(null);
+            setBackground(Color.black);
        
-       
-       
-       
-       
-       
-       
-       
-       addMouseListener(this);
-       setVariables();
+      
+        addMouseListener(this);
+        setVariables();
         
       
       
@@ -224,12 +164,12 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
        timer.start();
        helio.requestFocus();
        //requestFocus();
-    }  // end constructor
- 
+       
+   } // end initialize comopnents
     
     
-    
-    
+   
+   
     public void setVariables(){
         
         singularGravity = space.Space.globalSingularGravity;
@@ -255,6 +195,10 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     
     
+    
+    
+    
+    
     public void addHelio(){
         
         if(space.Space.thereIsAShip){
@@ -271,18 +215,18 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
             add(ship);
       }
         
-        Xcord = (screenWidth/2);
-        Ycord = (screenHeight/2);
+        Xcord = space.Space.centerX;
+        Ycord = space.Space.centerY;
          //helioSize = space.Space.globalHelioSize;
          
         helio = new Sbutton();
-        helio.setBounds(Xcord, Ycord, helioSize, helioSize);
+        helio.setBounds(Xcord, Ycord, helioSize, helioSize);//helio.setBounds(space.Space.centerX, space.Space.centerY, helioSize, helioSize);//
         helio.setBackground(Color.YELLOW);
         helio.addActionListener(this);
         helio.addKeyListener(this);
         if(space.Space.showStallman){
-            helioSize = space.Space.globalStallmanSize;
-        helio.makeHero();
+         helioSize = space.Space.globalStallmanSize;
+        //helio.makeHero();
         
         }
         helio.setBounds(Xcord, Ycord, helioSize, helioSize);
@@ -293,6 +237,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     
    //////////////////////////////////////////////////////////////////////////////////////
+    
+    
     
     
       public void addParticles(){
@@ -355,9 +301,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 
                 }else if (obj == helio){
                     
-                    timer.stop();
-                  
-                    space.Space.screen.startPanel();
+                    closeApanel();
                   
                 }else{
         
@@ -441,13 +385,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 }
                 
                 if(k == e.VK_E){
-                        
+                      
                   space.Space.screen.restart();      
 		}
                 
                   if(k == e.VK_X){
                         
-                  space.Space.screen.startPanel();      
+                  closeApanel();      
 		}
                       if(k == e.VK_P){
                         
@@ -518,14 +462,14 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		
 		
                 if(k == e.VK_E){
-                        
+                       
                   space.Space.screen.restart();      
 		}
                 
                 
                   if(k == e.VK_X){
                         
-                  space.Space.screen.startPanel();      
+                  closeApanel();      
 		}
                 
                   
@@ -576,8 +520,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
  
     
 
-    
-    
+  ///////////////////////////////////////////////////////////////////////////////////////////////  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////  
     
     
      
@@ -888,6 +832,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
      ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight);    
         }else{
          helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+         space.Space.centerX = e.getX();
+         space.Space.centerY = e.getY();
         }
         //  helio.setBackground(Color.red);
     }
@@ -898,6 +844,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
      ship.setBounds(e.getX(), e.getY(), space.Space.globalShipWidth, space.Space.globalShipHeight);
         }else{
          helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+         space.Space.centerX = e.getX();
+         space.Space.centerY = e.getY();
         }
         // helio.setBackground(Color.red);
     }
@@ -1015,10 +963,51 @@ public  double getAngleInDegrees(double x, double y, double x2, double y2) {
         
         
             
+ private void closeApanel(){
+     
+                    timer.stop();
+                    
+                    if(space.Space.midiPlayer.sequencer.isOpen()){
+                    space.Space.midiPlayer.sequencer.close();
+                    }
+                    
+                    space.Space.playMidiMusicNumber = 1; // this gets set to zero in the Aframe restart() method, to keep the midi player from playing multiple songs at once
+                    //space.Space.centerX
+                    //space.Space.centerY
+                    
+                    
+                    space.Space.screen.startPanel(); 
+     
+     
+ } // end close Apanel    
       
       
-      
-      
+   public static void playSong(String songName){
+     
+     if(space.Space.playMidiMusic){
+     
+                    
+         if(space.Space.playMidiMusicNumber==1){
+                
+                space.Space.midiPlayer = new MidiFrame();
+                space.Space.midiPlayer.songName = songName + ".mid";
+                    try {
+                        space.Space.midiPlayer.playMidiSong();
+                      
+                    } catch (MidiUnavailableException ex) {
+                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InvalidMidiDataException ex) {
+                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                //space.Space.midiPlayer.setVisible(false);
+                    
+            }  // end if midi number == 1           
+                    
+                    
+     }  // end if midi music == true         
+ } // end play song       
       
       
       

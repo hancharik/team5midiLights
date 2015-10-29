@@ -445,7 +445,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        if(space.Space.gravityGetsStronger== false){
            relativeGravityButton.setText("electron motion");
        }else{
-           relativeGravityButton.setText("classical motion");
+           relativeGravityButton.setText("gravitational motion");
        }
        relativeGravityButton.setBounds(column(4), row(4), 180, 40);
        relativeGravityButton.addActionListener(this);
@@ -485,10 +485,11 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        	if (obj == startAtomButton){
             
                 space.Space.globalSingularGravity = true;
-           
+                space.Space.showStallman = false;
                 space.Space.trigonometricMovement = false;
                 space.Space.thereIsAShip = false;
-                space.Space.globalParticleSize = 4;
+                space.Space.globalParticleSize = 2;
+                space.Space.showStallman = false;
                 space.Space.globalHelioSize = checkForStallman(32);
                 space.Space.globalParticleSizeMultiplier = 8;
                 space.Space.globalAmountOfParticles = 6000;
@@ -501,11 +502,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
                 space.Space.globalMinSpeed = 12;
                 space.Space.globalHelioSize = 1;
-           
-           
-      
-           
-          space.Space.screen.start();  
+                space.Space.globalSongName = "BeautifulDisaster";
+                space.Space.screen.start();  
            
            
        	}// end start atom button
@@ -530,6 +528,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             space.Space.globalSingularGravity = true;
             space.Space.gravityGetsStronger = false;
             space.Space.particles = false;
+            space.Space.showStallman = false;
             space.Space.globalParticleSize = 12;
             space.Space.globalHelioSize = checkForStallman(20);
             space.Space.globalParticleSizeMultiplier = 2;
@@ -539,6 +538,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             space.Space.globalTimerSpeed = 40;
             space.Space.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
             space.Space.globalMinSpeed = 6;
+            space.Space.globalSongName = "AveMaria";  
             space.Space.screen.start(); 
             
             
@@ -584,26 +584,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.globalSpeedlimit = 42;// douglas adams (42) is max
                 space.Space.globalMinSpeed = 12;
                 space.Space.gravityGetsStronger = false;
-                 
-           
-                
-                //////////////////////////////////////////////
-                // new at 2:19 am 10/28/15 - sound! 
-                space.Space.midiPlayer = new MidiFrame();
-                space.Space.midiPlayer.songName = "AintNothingButAGThing.mid";
-                    try {
-                        space.Space.midiPlayer.playMidiSong();
-                        //////////////////////////////////////////////
-                    } catch (MidiUnavailableException ex) {
-                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InvalidMidiDataException ex) {
-                        Logger.getLogger(StartPanel.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                //space.Space.midiPlayer.setVisible(false);
-                    
-                 space.Space.screen.start();   
+                space.Space.globalSongName = "AintNothingButAGThing";  
+                space.Space.screen.start();   
                  // space.Space.screen.display();  <-- full screen attempt
             
        	} // end stallman halo
@@ -652,6 +634,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.globalSpeedlimit = 60;// douglas adams (42) is max
                 space.Space.globalMinSpeed = 12;
                 space.Space.gravityGetsStronger = true;
+                space.Space.globalSongName = "MachineGun(Live)";
                 space.Space.screen.start(); 
            
                 
@@ -676,14 +659,16 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             space.Space.thereIsAShip = false;
             space.Space.globalSingularGravity = false;
             space.Space.particles = true;
-            space.Space.globalParticleSize = 6;
+            space.Space.globalParticleSize = 2;
+            space.Space.showStallman = false;
             space.Space.globalHelioSize = checkForStallman(18);
-            space.Space.globalAmountOfParticles = 1000;
+            space.Space.globalAmountOfParticles = 5000;
             space.Space.globalEnemySpeed = 1;
             space.Space.globalhelioSpeed = 10;
             space.Space.globalTimerSpeed = 1;
             space.Space.globalSpeedlimit = 12;// + heroSize;// douglas adams 42 is max
             space.Space.globalMinSpeed = 2;
+            space.Space.globalSongName = "Cochise";
             space.Space.screen.start(); 
                
        	}
@@ -951,7 +936,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             
             }else{
               space.Space.gravityGetsStronger = true; 
-              relativeGravityButton.setText("classical motion");
+              relativeGravityButton.setText("gravitational motion");
                 massOfCenter.setVisible(true);
                 massOfParticles.setVisible(true);
                 massOfCenterLabel.setVisible(true);
@@ -1106,7 +1091,7 @@ private int column(int c){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
         
-        
+   
         
         
         

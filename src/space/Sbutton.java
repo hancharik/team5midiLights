@@ -59,7 +59,7 @@ public class Sbutton extends JButton{
      public void makeHero(){
        
    
-       this.setIcon(new ImageIcon("images/rms.png"));
+       //this.setIcon(new ImageIcon("images/rms.png")); 
        
   }  
    

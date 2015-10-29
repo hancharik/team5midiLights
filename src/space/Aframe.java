@@ -95,11 +95,9 @@ public class Aframe extends JFrame{
      public void restart(){
          
                 getContentPane().remove(gamePanel);
-              
+                space.Space.playMidiMusicNumber = 0;
                 gamePanel = new Apanel();
-               
                 getContentPane().add(gamePanel, "Center");
-           
                 setVisible(true);
                 gamePanel.helio.requestFocus();
         

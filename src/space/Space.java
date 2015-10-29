@@ -24,7 +24,7 @@ public class Space {
     
     public static Aframe screen;
     
-    public static MidiFrame midiPlayer;
+    public static MidiFrame midiPlayer = new MidiFrame();
     
     
     
@@ -39,7 +39,9 @@ public class Space {
     
     public static double height = 1000;
     public static double width = 1880;
-  
+    public static int centerY = 500;//(int)(height/2);
+    public static int centerX = 940;//(int)(width/2);
+    
     
     public static int globalParticleSize = 16;
     public static double globalParticleMass = 10.0;
@@ -49,6 +51,11 @@ public class Space {
    public static int gravityWellDistance = 200;
     public static double massOfCenter = 10.0;
    
+    
+    public static String globalSongName = "WarPigs";
+    public static boolean playMidiMusic = true;
+    public static int playMidiMusicNumber = 1;  // this gets set to zero on the apanel restart method
+    
     
     
     
@@ -88,7 +95,7 @@ public class Space {
      public static int globalElementNumber = 0;
      public static double globalAtomicMass  = 0.0;
      
-     public static int globalStallmanSize = 80;// * globalParticleSizeMultiplier;
+     public static int globalStallmanSize = 1;// * globalParticleSizeMultiplier;
     public static int globalEnemySpeed = 1;
     
     public static int globalShipHeight = 20;
