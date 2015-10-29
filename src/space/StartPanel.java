@@ -590,7 +590,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 //////////////////////////////////////////////
                 // new at 2:19 am 10/28/15 - sound! 
                 space.Space.midiPlayer = new MidiFrame();
-                space.Space.midiPlayer.songName = "LastDance.mid";
+                space.Space.midiPlayer.songName = "AintNothingButAGThing.mid";
                     try {
                         space.Space.midiPlayer.playMidiSong();
                         //////////////////////////////////////////////
@@ -654,6 +654,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.gravityGetsStronger = true;
                 space.Space.screen.start(); 
            
+                
+                
+                
+                
+                
+                
             
        	} // end ship halo
         
