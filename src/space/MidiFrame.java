@@ -178,7 +178,7 @@ public class MidiFrame extends JFrame{
                 
                 stopSong = new JButton("stop song");
         stopSong.setBounds(600, 80, 160, 40);
-        //stopSong.setVisible(false);
+        stopSong.setVisible(false);
    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
         stopSong.addActionListener(new ActionListener() {
  //http://www.javaprogrammingforums.com/java-swing-tutorials/278-how-add-actionlistener-jbutton-swing.html
@@ -543,7 +543,7 @@ if (channel != null) {
             sequencer.setSequence(is);
             sequencer.start();
             is.close();
-            
+            this.dispose();
       
    } // end play midi song
   

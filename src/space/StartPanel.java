@@ -668,7 +668,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             space.Space.globalTimerSpeed = 1;
             space.Space.globalSpeedlimit = 12;// + heroSize;// douglas adams 42 is max
             space.Space.globalMinSpeed = 2;
-            space.Space.globalSongName = "Cochise";
+            space.Space.globalSongName = "Funkytown";
             space.Space.screen.start(); 
                
        	}
@@ -732,15 +732,37 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
             
             
+        
+            
+            
+            
+            
+            
+            
+            
             
        
         if (obj == quitButton){
             
-           
+            
+           space.Space.midiPlayer.dispose();
            space.Space.screen.dispose();
             
             
        	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         if (obj == shipSelectorButton){
