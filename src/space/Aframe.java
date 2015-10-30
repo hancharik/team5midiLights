@@ -51,6 +51,7 @@ public class Aframe extends JFrame{
         
 		super ("BES Particle Simulator");
                 getContentPane().setLayout(new BorderLayout());
+                getRootPane().setDoubleBuffered(true);  // omg please work
                 setExtendedState(JFrame.MAXIMIZED_BOTH);//setSize (width, height);
                 width = this.getWidth();
                 height = this.getHeight();

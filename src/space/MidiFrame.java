@@ -189,7 +189,7 @@ public class MidiFrame extends JFrame{
                     stopSong.setVisible(false);
                     chooseSong.setVisible(true);
                      sequencer.close();
-                            
+                   // stopSong.getParent().this.dispose();      
               
             }
 
@@ -543,7 +543,7 @@ if (channel != null) {
             sequencer.setSequence(is);
             sequencer.start();
             is.close();
-            this.dispose();
+           // this.dispose();
       
    } // end play midi song
   

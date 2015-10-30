@@ -81,7 +81,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton shipButton;
     JButton shipSelectorButton;
     
-    JButton teamMemberButton1;
+    JButton MarkButton;
     JButton teamMemberButton2;
     JButton teamMemberButton3;
     JButton teamMemberButton4;
@@ -369,10 +369,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        // add team member buttons
        // just add your name to a button for your own panel
        // these still need to be wired, not sure what needs to be done
-       teamMemberButton1 = new JButton("Mark");
-       teamMemberButton1.setBounds(column(7), row(5), 80, 40);
-       teamMemberButton1.addActionListener(this);
-       add(teamMemberButton1);
+       MarkButton = new JButton("Mark");
+       MarkButton.setBounds(column(7), row(5), 80, 40);
+       MarkButton.addActionListener(this);
+       add(MarkButton);
        teamMemberButton2 = new JButton("vacant");
        teamMemberButton2.setBounds(column(7), row(6), 80, 40);
        teamMemberButton2.addActionListener(this);
@@ -820,10 +820,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // team member buttons
         
-        if (obj == teamMemberButton1){
+        if (obj == MarkButton){
             
-            space.Space.screen.start1(); 
-           // space.Space.fullAframe();  
+            //space.Space.screen.start1(); 
+           space.Space.fullAframe();  
        	}
         if (obj == teamMemberButton2){
             
