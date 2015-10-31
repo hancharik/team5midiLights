@@ -40,7 +40,7 @@ import javax.swing.Timer;
 public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
     
         //@see http://stackoverflow.com/questions/7456227 
-        private static final String abstractActionString = "close";
+        private static final String abstractActionString = "";
     ///////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
     

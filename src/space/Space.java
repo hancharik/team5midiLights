@@ -52,7 +52,7 @@ public class Space {
     public static double massOfCenter = 10.0;
    
     
-    public static String globalSongName  = "Chicken";//= "TheMoneyWillRollRightIn";
+    public static String globalSongName  = "TheMoneyWillRollRightIn";//= "Chicken";//
     public static boolean playMidiMusic = true;
     public static int playMidiMusicNumber = 1;  // this gets set to zero on the apanel restart method
     
