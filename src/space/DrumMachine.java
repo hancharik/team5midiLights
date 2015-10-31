@@ -1,19 +1,19 @@
 
+/**
+ *
+ * From Head First Java, 2nd Ed. ISBN: 0596009208, page 420
+ *      I hand entered the code from the book, and then found out that
+ *     all the code is here : http://www.headfirstlabs.com/books/hfjava/
+ *      also very helpful is the full list of midi control numbers:
+ *      http://www.midi.org/techspecs/midimessages.php
+ */
+
+
+
 package space;
 
 
 
-
-
-
-
-/**
- *
- * From Head First Java, 2nd Ed. ISBN: 0596009208, page 420
- * 
- * 
- *      http://www.midi.org/techspecs/midimessages.php
- */
 
 
 import java.awt.*;
@@ -112,7 +112,7 @@ public class DrumMachine extends JPanel{
         
         Box nameBox = new Box(BoxLayout.Y_AXIS);
         for(int i = 0; i < 16; i++){
-           nameBox.add(new JLabel("<html><h3><font color='white'>" + instrumentNames[i] + "</font><h3></html>")); 
+           nameBox.add(new JLabel("<html><h4><font color='white'>" + instrumentNames[i] + "</font><h4></html>")); 
         }
         
         this.add(BorderLayout.EAST, buttonBox);
