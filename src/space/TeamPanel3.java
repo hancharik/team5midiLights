@@ -58,8 +58,7 @@ public class TeamPanel3 extends JPanel implements ActionListener, KeyListener, M
         
        
     
-    
-    
+     
     
     
     
@@ -137,7 +136,12 @@ public class TeamPanel3 extends JPanel implements ActionListener, KeyListener, M
        setBackground(Color.black);
        
        
+       SliderPanel sp = new SliderPanel();
        
+       sp.setBounds(0, 0, 680, 300);
+       sp.setBackground(Color.black);
+       add(sp);
+    
        
        
          // this.add(b);

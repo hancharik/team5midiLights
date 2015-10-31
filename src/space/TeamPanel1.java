@@ -140,17 +140,17 @@ public class TeamPanel1 extends JPanel implements ActionListener, KeyListener, M
        setBackground(Color.black);
        
        
+       b.setBounds(10, 10, 40, 40);
        
        
-       
-         // this.add(b);
+          this.add(b);
         
         
-       // space.Space.f.getRootPane().setDefaultButton(b);
+        space.Space.f.getRootPane().setDefaultButton(b);
         
   
     
-        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_Q, 0), abstractActionString);
+        this.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_L, 0), abstractActionString);
         
      
         
@@ -160,10 +160,7 @@ public class TeamPanel1 extends JPanel implements ActionListener, KeyListener, M
        
        
        
-       
-       
-       
-       
+     
        
        
        addMouseListener(this);

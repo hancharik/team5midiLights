@@ -83,7 +83,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     
     JButton MarkButton;
     JButton teamMemberButton2;
-    JButton teamMemberButton3;
+    JButton realTimeAdjustScreenButton;
     JButton teamMemberButton4;
     JButton teamMemberButton5;
     JButton teamMemberButton6;
@@ -369,7 +369,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        // add team member buttons
        // just add your name to a button for your own panel
        // these still need to be wired, not sure what needs to be done
-       MarkButton = new JButton("Mark");
+       MarkButton = new JButton("NO!!!");
        MarkButton.setBounds(column(7), row(5), 80, 40);
        MarkButton.addActionListener(this);
        add(MarkButton);
@@ -377,10 +377,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        teamMemberButton2.setBounds(column(7), row(6), 80, 40);
        teamMemberButton2.addActionListener(this);
        add(teamMemberButton2);
-       teamMemberButton3 = new JButton("vacant");
-       teamMemberButton3.setBounds(column(7), row(7), 80, 40);
-       teamMemberButton3.addActionListener(this);
-       add(teamMemberButton3);
+       realTimeAdjustScreenButton = new JButton("RTA");
+       realTimeAdjustScreenButton.setBounds(column(7), row(7), 80, 40);
+       realTimeAdjustScreenButton.addActionListener(this);
+       add(realTimeAdjustScreenButton);
        teamMemberButton4 = new JButton("vacant");
        teamMemberButton4.setBounds(column(7), row(8), 80, 40);
        teamMemberButton4.addActionListener(this);
@@ -830,10 +830,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             space.Space.screen.start2(); 
            // space.Space.fullAframe();  
        	}
-        if (obj == teamMemberButton3){
+        if (obj == realTimeAdjustScreenButton){
             
             space.Space.screen.start3(); 
-           // space.Space.fullAframe();  
+          space.Space.globalSongName = "Chicken";
        	}
         if (obj == teamMemberButton4){
             

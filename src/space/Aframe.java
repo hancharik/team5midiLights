@@ -26,7 +26,7 @@ public class Aframe extends JFrame{
    
     Apanel gamePanel;// = new Apanel();
     
-    
+     
    
     StartPanel startPanel;// = new StartPanel();
     
@@ -56,7 +56,7 @@ public class Aframe extends JFrame{
                 width = this.getWidth();
                 height = this.getHeight();
                 startPanel = new StartPanel();
-		getContentPane().add(startPanel,"Center");
+		getContentPane().add(startPanel,"Center");//getContentPane().add(startPanel,"Center");
                 setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
                 

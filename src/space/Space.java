@@ -52,7 +52,7 @@ public class Space {
     public static double massOfCenter = 10.0;
    
     
-    public static String globalSongName = "WarPigs";
+    public static String globalSongName  = "Chicken";//= "TheMoneyWillRollRightIn";
     public static boolean playMidiMusic = true;
     public static int playMidiMusicNumber = 1;  // this gets set to zero on the apanel restart method
     
@@ -127,7 +127,7 @@ public class Space {
       height = screenSize.getHeight();
         screen = new Aframe(); 
    
-        
+       
         
     }  // end main
     
@@ -142,7 +142,8 @@ public class Space {
 
             @Override
             public void run() {
-                f = new JFrame("FullScreenTest");
+                //screen.dispose();
+                f = new JFrame("theProblem");
                 new Apanel().display();
             }
         });
