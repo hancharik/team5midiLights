@@ -39,6 +39,25 @@ import javax.swing.Timer;
  */
 public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
     
+        //@see http://stackoverflow.com/questions/7456227 
+        private static final String abstractActionString = "close";
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    private Action nameOfActionVariable = new AbstractAction(abstractActionString) {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                space.Space.f.dispatchEvent(new WindowEvent(
+                    space.Space.f, WindowEvent.WINDOW_CLOSING));
+                space.Space.fullScreen = false;
+                   if(space.Space.midiPlayer.sequencer.isOpen()){
+                    space.Space.midiPlayer.sequencer.close();
+                    }
+            }
+        };
+    private JButton b = new JButton(nameOfActionVariable);
 
     
     int playerSize = space.Space.globalParticleSize;
@@ -101,7 +120,17 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
    public void initializeComponents(){
        
-       
+        b.setBounds(10, 10, 60, 40);
+       b.setBackground(Color.black);
+       b.setBorderPainted(false);
+         
+                 if (space.Space.fullScreen == true){
+                    this.add(b);
+                 }
+                    
+                    
+                    
+        space.Space.screen.getRootPane().setDefaultButton(b);
             setLayout(null);
             setBackground(Color.black);
        
@@ -1016,6 +1045,7 @@ public  double getAngleInDegrees(double x, double y, double x2, double y2) {
         space.Space.f.add(this);
         space.Space.f.pack();
         dev.setFullScreenWindow(space.Space.f);
+        helio.requestFocus();
     }  // end display
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       

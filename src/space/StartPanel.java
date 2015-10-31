@@ -369,8 +369,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        // add team member buttons
        // just add your name to a button for your own panel
        // these still need to be wired, not sure what needs to be done
-       MarkButton = new JButton("NO!!!");
-       MarkButton.setBounds(column(7), row(5), 80, 40);
+       MarkButton = new JButton("full screen");
+       MarkButton.setBounds(column(2), row(13), 160, 40);
        MarkButton.addActionListener(this);
        add(MarkButton);
        teamMemberButton2 = new JButton("vacant");
@@ -404,7 +404,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
        
        startButton = new JButton("start");
-       startButton.setBounds(column(2), row(13), 80, 40);
+       startButton.setBounds(column(7), row(13), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        

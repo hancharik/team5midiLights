@@ -87,7 +87,7 @@ public class Space {
      public static boolean allParticlesHaveGravity = false; // leave this off until we get a fast processor!
      public static boolean thereIsAShip = false; // leave this off until we get a fast processor!
      public static boolean showCards = true; // leave this off until we get a fast processor!
-     
+     public static boolean fullScreen = false;
      
      public static int currentSelectedElectronNumber = 1;
      public static String globalElementSymbol = "";
@@ -144,6 +144,7 @@ public class Space {
             public void run() {
                 //screen.dispose();
                 f = new JFrame("theProblem");
+                fullScreen = true;
                 new Apanel().display();
             }
         });
