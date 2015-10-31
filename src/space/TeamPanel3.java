@@ -101,7 +101,7 @@ public class TeamPanel3 extends JPanel implements ActionListener, KeyListener, M
     
     
     
-    
+    DrumMachine dr6000;
     
     
     
@@ -138,11 +138,15 @@ public class TeamPanel3 extends JPanel implements ActionListener, KeyListener, M
        
        SliderPanel sp = new SliderPanel();
        
-       sp.setBounds(0, 0, 680, 300);
+       sp.setBounds(0, 0, 500, 300);
        sp.setBackground(Color.black);
        add(sp);
     
+       dr6000 = new DrumMachine();
        
+       dr6000.setBounds(0, 312, 600, 600);
+       //dr6000.setBackground(Color.black);
+       add(dr6000);
        
          // this.add(b);
         

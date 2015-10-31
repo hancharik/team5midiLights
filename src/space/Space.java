@@ -85,8 +85,8 @@ public class Space {
      public static boolean linearMovement = false;  // when true, this is our original movement 
      public static boolean gravityGetsStronger = true;
      public static boolean allParticlesHaveGravity = false; // leave this off until we get a fast processor!
-     public static boolean thereIsAShip = false; // leave this off until we get a fast processor!
-     public static boolean showCards = true; // leave this off until we get a fast processor!
+     public static boolean thereIsAShip = false;
+     public static boolean showCards = true; 
      public static boolean fullScreen = false;
      
      public static int currentSelectedElectronNumber = 1;

@@ -82,7 +82,7 @@ public class Aframe extends JFrame{
     
      public void start(){
          
-                getContentPane().remove(startPanel);
+                getContentPane().removeAll();
                 gamePanel = new Apanel();
                 getContentPane().add(gamePanel,"Center");
                 setVisible(true);
@@ -95,7 +95,7 @@ public class Aframe extends JFrame{
      
      public void restart(){
          
-                getContentPane().remove(gamePanel);
+                getContentPane().removeAll();
                 space.Space.playMidiMusicNumber = 0;
                 gamePanel = new Apanel();
                 getContentPane().add(gamePanel, "Center");
