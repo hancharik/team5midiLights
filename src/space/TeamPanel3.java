@@ -285,7 +285,7 @@ public class TeamPanel3 extends JPanel implements ActionListener, KeyListener, M
          
         helio = new Sbutton();
         helio.setBounds(Xcord, Ycord, helioSize, helioSize);
-        helio.setBackground(Color.YELLOW);
+        helio.setBackground(Color.BLACK);
         helio.addActionListener(this);
         helio.addKeyListener(this);
         if(space.Space.showStallman){

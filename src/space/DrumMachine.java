@@ -193,7 +193,7 @@ public class DrumMachine extends JPanel{
            int key = instruments[i];
            
            for(int j = 0; j < 16; j++){
-               JCheckBox jc = (JCheckBox) checkboxList.get(j + (16*i));// <-- very nice!
+               JCheckBox jc = (JCheckBox) checkboxList.get(j + (16*i));// <-- very nice! 
                if(jc.isSelected()){
                    trackList[j] = key;
                }else{
@@ -239,7 +239,7 @@ public class DrumMachine extends JPanel{
       public void actionPerformed(ActionEvent a){
           float tempoFactor = sequencer.getTempoFactor();
           sequencer.setTempoFactor((float)(tempoFactor * 1.03));
-          upTempo.setText("tempo: " + sequencer.getTempoFactor());
+       //   upTempo.setText("tempo: " + sequencer.getTempoFactor());
           
       }
       
@@ -249,7 +249,7 @@ public class DrumMachine extends JPanel{
       public void actionPerformed(ActionEvent a){
           float tempoFactor = sequencer.getTempoFactor();
           sequencer.setTempoFactor((float)(tempoFactor * .97));
-          upTempo.setText("tempo: " + sequencer.getTempoFactor());
+         // upTempo.setText("tempo: " + sequencer.getTempoFactor());
       }
       
   }  

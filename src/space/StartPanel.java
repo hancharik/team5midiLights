@@ -530,7 +530,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             space.Space.particles = false;
             space.Space.showStallman = false;
             space.Space.globalParticleSize = 12;
-            space.Space.globalHelioSize = checkForStallman(20);
+           // space.Space.globalHelioSize = checkForStallman(80);
             space.Space.globalParticleSizeMultiplier = 2;
             space.Space.globalAmountOfParticles = (int)(Math.random() * 9) + 1;
             space.Space.globalEnemySpeed = 1;
@@ -584,7 +584,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.globalSpeedlimit = 42;// douglas adams (42) is max
                 space.Space.globalMinSpeed = 12;
                 space.Space.gravityGetsStronger = false;
-                space.Space.globalSongName = "AintNothingButAGThing";  
+                space.Space.globalSongName = "DontYouWorryAboutaThing";//"AintNothingButAGThing";  
                 space.Space.screen.start();   
                  // space.Space.screen.display();  <-- full screen attempt
             
@@ -625,7 +625,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.globalParticleSize = 2;
                 space.Space.showStallman = false;
                 space.Space.globalAmountOfParticles = 6000;
-                space.Space.globalHelioSize= 4;
+              //  space.Space.globalHelioSize= 4;
                 space.Space.globalParticleMass = 3;  // 3 - super important!
                 space.Space.globalEnemySpeed = 1;
                 space.Space.gravityWellDistance = 555;  
@@ -634,7 +634,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                 space.Space.globalSpeedlimit = 60;// douglas adams (42) is max
                 space.Space.globalMinSpeed = 12;
                 space.Space.gravityGetsStronger = true;
-                space.Space.globalSongName = "MachineGun(Live)";
+                space.Space.globalSongName = "Chicken";
                 space.Space.screen.start(); 
            
                 

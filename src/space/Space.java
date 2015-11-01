@@ -52,7 +52,7 @@ public class Space {
     public static double massOfCenter = 10.0;
    
     
-    public static String globalSongName  = "TheMoneyWillRollRightIn";//= "Chicken";//
+    public static String globalSongName  = "TeenTown";//"DontYouWorryAboutaThing";//"TheMoneyWillRollRightIn";//= "Chicken";//
     public static boolean playMidiMusic = true;
     public static int playMidiMusicNumber = 1;  // this gets set to zero on the apanel restart method
     
@@ -110,7 +110,7 @@ public class Space {
    // these have yet to be added to the start panel
     public static int globalParticleSizeMultiplier = 3;
     public static int globalhelioSpeed = 10;
-   public static int globalHelioSize = 40;// * globalParticleSizeMultiplier;
+   public static int globalHelioSize = 120;// * globalParticleSizeMultiplier;
    
    
    

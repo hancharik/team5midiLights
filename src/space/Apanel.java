@@ -271,7 +271,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
          
         helio = new Sbutton();
         helio.setBounds(Xcord, Ycord, helioSize, helioSize);//helio.setBounds(space.Space.centerX, space.Space.centerY, helioSize, helioSize);//
-        helio.setBackground(Color.YELLOW);
+        helio.setBackground(Color.BLACK);
         helio.addActionListener(this);
         helio.addKeyListener(this);
         if(space.Space.showStallman){
@@ -687,9 +687,9 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                     
                        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                    
-                                       particles.get(i).xVel = particles.get(i).xVel + calculateGravityForX(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY(), particles.get(i).mass, helio.mass);
+                                       particles.get(i).xVel = particles.get(i).xVel + calculateGravityForX(particles.get(i).getX()+ (playerSize/2),particles.get(i).getY()+ (playerSize/2), helio.getX()+ (helioSize/2), helio.getY()+ (helioSize/2), particles.get(i).mass, helio.mass);
                                     
-                                       particles.get(i).yVel = particles.get(i).yVel + calculateGravityForY(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY(), particles.get(i).mass, helio.mass);
+                                       particles.get(i).yVel = particles.get(i).yVel + calculateGravityForY(particles.get(i).getX()+ (playerSize/2),particles.get(i).getY()+ (playerSize/2), helio.getX()+ (helioSize/2), helio.getY()+ (helioSize/2), particles.get(i).mass, helio.mass);
                                  
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
               
